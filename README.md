@@ -30,5 +30,5 @@
 
 <hr>
 
-<h4><strong>Curso:</strong> :green_book: :books: 22 capítulos</h4>
+<h4><strong>Curso:</strong> :green_book: :books: 8 módulos</h4>
 <h4><strong>Status do Curso:</strong> 💬 Estudando</h4>
