@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Exercício – instalar o compilador do TypeScript</title>
+</head>
+
+<body>
+  <h1>Exercício – instalar o compilador do TypeScript</h1>
+
+  <p>O editor de código pode ter suporte interno de linguagem para TypeScript, mas, para transformar o código TypeScript em JavaScript que um navegador compreenderá, você precisa primeiro instalar a biblioteca do TypeScript. A biblioteca também contém o compilador do TypeScript, também chamado de tsc.</p>
+
+  <p>Você pode instalar o TypeScript <i>globalmente</i> (disponível em qualquer lugar no sistema de arquivos) ou <i>localmente</i> (disponível apenas no nível do projeto). Neste exercício, você instalará o TypeScript globalmente. À medida que você trabalha mais com o TypeScript em bases de código maiores e mais complexas, é provável que você mude para uma instalação por projeto para ter mais controle sobre a consistência de seus projetos.</p>
+
+  <h2>Testar a instalação do TypeScript</h2>
+
+  <p>Talvez você já tenha o TypeScript instalado em seu computador. Você pode verificar isso abrindo a janela de prompt de comando e inserindo <mark>tsc</mark>. Se o TypeScript estiver instalado, você verá a versão e uma lista de comandos do compilador. Agora você está pronto para usar o TypeScript.</p>
+
+  <p>Se o TypeScript não estiver instalado, você verá uma mensagem informando que o comando não foi reconhecido. Continue na próxima etapa deste exercício.</p>
+
+  <h2>Instalar o npm (Gerenciador de Pacotes do Node)</h2>
+
+  <p>Você precisará de uma cópia do Node.js como um ambiente para executar o pacote do TypeScript. O Node.js, uma biblioteca do JavaScript para aplicativos do lado do servidor, não é necessária para aprender o TypeScript. Mas, ao instalá-lo, você também obtém o Gerenciador de Pacotes do Node, também chamado de npm, o gerenciador de pacotes da linguagem JavaScript. Em seguida, você usará o npm para instalar o pacote TypeScript.</p>
+
+  <p>Se você for um desenvolvedor de JavaScript, provavelmente o npm já estará instalado em seu computador. Você pode verificar isso abrindo a janela de prompt de comando e inserindo <mark>npm version</mark>. Se o npm estiver instalado, você verá a versão e uma lista de comandos do compilador e estará pronto para usar o npm.</p>
+
+  <p>Se o npm não estiver instalado, você verá uma mensagem informando que o comando não foi reconhecido. Para instalar o Node.js:</p>
+
+  <ol>
+    <li>Vá para a página de Downloads do <a href="https://nodejs.org/en/download">Node.js</a>.</li>
+    <li>Selecione qualquer uma das versões disponíveis do Node.js para baixá-la e instalá-la.</li>
+    <li>Para verificar se o npm está instalado, abra a janela do prompt de comando e insira <mark>npm version</mark>.</li>
+  </ol>
+
+  <h2>Instalar o TypeScript</h2>
+
+  <p>O TypeScript está disponível como um pacote no registro npm como typescript. Para instalar a versão mais recente do TypeScript:</p>
+
+  <ul>
+    <li>Na janela do Prompt de Comando, insira <mark>npm install -g typescript</mark></li>
+    <li>Insira <mark>tsc</mark> para verificar se o TypeScript está instalado. Se ele tiver sido instalado com êxito, esse comando mostrará uma lista de comandos e opções do compilador.</li>
+  </ul>
+</body>
+
+</html>
