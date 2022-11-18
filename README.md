@@ -1,4 +1,4 @@
-<img src="img/logo-microsoft-learn.jpeg" width="80%">
+<img src="img/logo-microsoft-learn.jpeg" width="60%">
 <h2>Roteiro de Aprendizagem - Typescript</h2>
 
 <p>Os roteiros de aprendizagem são coleções de módulos de treinamento organizados de acordo com funções específicas (como desenvolvedor, arquiteto ou administrador de sistemas) ou tecnologias específicas (como Aplicativos Web do Azure, Power BI ou Xamarin.Forms). Ao concluir um roteiro de aprendizagem, você terá adquirido um novo entendimento sobre os diferentes aspectos da tecnologia ou função que você estiver estudando. Você também receberá um troféu de conquista.</p>
