@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Compilar um arquivo TypeScript</title>
+</head>
+
+<body>
+  <h1>Compilar um arquivo TypeScript</h1>
+
+  <p>Conforme você aprendeu anteriormente, o TypeScript é um superconjunto estrito do <a href="https://www.ecma-international.org/ecma-262/6.0/">ECMAScript 2015</a> (ECMAScript 6 ou ES6). Isso significa que todo o código JavaScript também é código TypeScript, e um programa TypeScript pode consumir o JavaScript de maneira direta. Na verdade, você pode converter um arquivo JavaScript em um arquivo TypeScript simplesmente renomeando a extensão de .js para .ts.</p>
+
+  <p>No entanto, nem todo código TypeScript é código JavaScript. Isso ocorre porque o TypeScript adiciona uma nova sintaxe ao JavaScript, o que torna o JavaScript mais fácil de ler e implementa alguns recursos, como a digitação estática. Embora o código TypeScript torne o desenvolvimento mais fácil e menos propenso a erros, os navegadores e a maioria dos outros runtimes não dão suporte nativo a TypeScript. Por esse motivo, o TypeScript requer uma etapa de build (<a href="https://en.wikipedia.org/wiki/Source-to-source_compiler">transcompilador</a>) para transformá-lo em JavaScript para que o aplicativo funcione.</p>
+
+  <p>Você transforma o código TypeScript em código JavaScript usando o compilador do TypeScript ou um transcompilador compatível com TypeScript, como o <a href="https://babeljs.io/">Babel</a>, o <a href="https://swc.rs/docs/installation/">SWC</a> ou o <a href="https://github.com/alangpierce/sucrase">sucrase</a>. Esse processo remove o código específico ao TypeScript (por exemplo, interfaces e declarações de tipo). Além disso, ele gera um arquivo JavaScript limpo que você pode executar em suas páginas da Web e é compatível com navegadores.</p>
+
+  <h2>Compilar um arquivo TypeScript</h2>
+
+  <p>Você executa o compilador do TypeScript no prompt de comando usando o comando tsc. Quando você executa <mark>tsc</mark> sem parâmetros adicionais, ele compila todos os arquivos .ts na pasta atual e gera um arquivo <i>.js</i> para cada um deles.</p>
+
+  <p>Você também pode compilar um arquivo específico. Por exemplo, para compilar um arquivo TypeScript chamado <i>utility_functions.ts</i>, insira <mark>tsc utility_functions.ts</mark>.</p>
+
+  <div>
+    <p>Observação</p>
+    <p>A inserção da extensão de arquivo .ts é opcional.</p>
+  </div>
+
+  <p>Se não houver nenhum erro de compilador, o comando <mark>tsc</mark> vai gerar um arquivo JavaScript chamado <i>utility_functions.js</i>.</p>
+
+  <p>Se o compilador encontrar erros no código, ele os exibirá na janela Comando. Corrija os erros no arquivo TypeScript e execute o comando <mark>tsc</mark> novamente.</p>
+
+  <h2>Opções do compilador</h2>
+
+  <p>Usando as opções do compilador, você pode controlar como o JavaScript é gerado do TypeScript de origem. Você pode definir as opções no prompt de comando, como faria com muitas interfaces de linha de comando ou em um arquivo JSON chamado tsconfig.json.</p>
+
+  <p>Várias opções de compilador estão disponíveis para você. Você pode encontrar uma lista completa de opções na <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">documentação de interfaces de linha de comando do tsc</a>. Estas são algumas das opções mais comuns:</p>
+
+  <ul>
+    <li><mark>noImplicitAny</mark></li>
+    <li><mark>noEmitOnError</mark></li>
+    <li><mark>target</mark></li>
+    <li>as opções de diretório</li>
+  </ul>
+
+  <p>Para controlar a compilação, você pode usar as opções do compilador com o comando <mark>tsc</mark>, incluindo:</p>
+
+  <ul>
+    <li>A opção <mark>--noImplicitAny</mark> instrui o compilador a gerar erros em expressões e declarações com um tipo <mark>any</mark> implícito. Por exemplo:</li>
+
+    <p><mark>tsc utility_functions.ts --noImplicitAny</mark></p>
+
+    <li>A opção --target especifica a versão de destino do ECMAScript para o arquivo JavaScript. Este exemplo compila um arquivo JavaScript em conformidade com ECMAScript 6:</li>
+
+    <p><mark>tsc utility_functions.ts --target "ES2015"</mark></p>
+  </ul>
+
+  <p>Você aprenderá sobre outras opções do compilador em módulos posteriores.</p>
+</body>
+
+</html>
