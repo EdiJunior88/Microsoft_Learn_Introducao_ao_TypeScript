@@ -1,0 +1,37 @@
+h1 {
+  background: #fff;
+  background: linear-gradient(30deg, #fff 17%, #00ff08 99%);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+h2 {
+  background: #fbf33f;
+  background: radial-gradient(circle, #fbf33f7a 0%, #464dfc3d 100%);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+div {
+  font-family: monospace;
+  font-size: 0.9em;
+  line-height: 2em;
+  background: #7fb5e7ad;
+  padding: 10px 20px;
+}
+
+div > p:nth-child(1) {
+  font-weight: bolder;
+  color: #263441;
+}
+
+code {
+  display: block;
+  text-align: left;
+  white-space: break-spaces;
+  background: #f0efef;
+  line-height: 2em;
+  font-size: 0.8em;
+  margin: 10px 20px;
+  color: #414141;
+}
