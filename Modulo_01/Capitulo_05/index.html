@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Exercício – configurar um projeto do TypeScript</title>
+</head>
+
+<body>
+  <h1>Exercício – configurar um projeto do TypeScript</h1>
+
+  <p>Neste exercício, você criará um projeto do TypeScript. Em seguida, você verificará que o seu ambiente de desenvolvimento está configurado corretamente executando o compilador e verificando se o arquivo JavaScript foi gerado.</p>
+
+  <h2>Configurar um projeto do TypeScript no Visual Studio Code</h2>
+
+  <p>Nesta etapa, você cria um workspace do projeto no Visual Studio Code e inicializa o projeto.</p>
+
+  <ol>
+    <li>Abra o Visual Studio Code.</li>
+    <li>No painel de <strong>Boas-vindas</strong>, selecione <strong>Adicionar pasta de workspace</strong>.</li>
+    <p><img src="img/m01-visual-studio-code-add-workspace-folder-1.png" alt=""></p>
+    <li>Crie uma pasta de projeto e selecione <strong>Adicionar</strong>.</li>
+    <li>No painel esquerdo, selecione o botão <strong>Explorador</strong>.</li>
+    <p><img src="img/m01-visual-studio-code-explorer-icon-2.png" alt=""></p>
+    <li>No painel Explorador, selecione o ícone <strong>Novo Arquivo</strong>.</li>
+    <p><img src="img/m01-visual-studio-code-new-file-icon-3.png" alt=""></p>
+    <li>Em <strong>Exercício do Módulo 01</strong>, digite o nome do arquivo <strong>module01.ts</strong> e pressione <strong>Enter</strong>. O arquivo TypeScript aparece em um novo editor de código.</li>
+    <p><img src="img/m01-visual-studio-code-new-typescript-file-4.png" alt=""></p>
+  </ol>
+
+  <h2>Gerar um arquivo tsconfig.json</h2>
+
+  <p>O compilador do TypeScript aplica o comportamento padrão quando você compila o código-fonte TypeScript. Mas você pode modificar as opções do compilador do TypeScript adicionando um arquivo tsconfig.json à raiz da sua pasta de projeto do TypeScript. Esse arquivo define as configurações do projeto TypeScript, como as opções do compilador e os arquivos que devem ser incluídos.</p>
+
+  <p>Você pode usar a opção init do compilador do TypeScript para gerar um arquivo TSConfig com as opções padrão.</p>
+
+  <ol>
+    <li>No Visual Studio Code, abra uma nova janela Terminal selecionando <strong>Terminal>Novo Terminal</strong>.</li>
+    <li>No prompt de comando, digite <mark>tsc --init</mark>.</li>
+    <li>Observe que o novo arquivo <i>tsconfig.json</i> foi adicionado ao painel Explorador. Talvez seja necessário atualizar o painel Explorador para exibir o arquivo.</li>
+    <li>Abra o arquivo <i>tsconfig.json</i> no editor de código. Você verá que ele tem muitas opções, a maioria das quais estão como comentários. Examine a descrição de cada opção habilitada.</li>
+    <li>No arquivo <i>tsconfig.json</i>, procure a opção de destino e altere-a para <mark>"ES2015"</mark>.</li>
+    <li>Atualize o arquivo <i>tsconfig.json</i> para que o compilador salve todos os arquivos JavaScript em uma nova pasta.</li>
+    <li>a. No painel Explorador, crie uma pasta chamada build em seu projeto.</li>
+    <li>b. No arquivo <i>tsconfig.json</i>, procure a opção <mark>outDir</mark>, remova o comentário e defina o parâmetro para build.</li>
+    <li>Salve o arquivo <i>tsconfig.json</i>.</li>
+    <li>No prompt de comando, digite <mark>tsc</mark>. Isso lê o arquivo <i>tsconfig.json</i> e redefine as opções para o projeto.</li>
+  </ol>
+
+  <div>
+    <p>Dica</p>
+    <p>Para saber mais sobre o arquivo tsconfig.json, confira a <a href="https://www.staging-typescript.org/tsconfig">Referência do TSConfig</a>.</p>
+  </div>
+
+  <h2>Compilar TypeScript para JavaScript</h2>
+
+  <p>Vamos adicionar um código JavaScript ao arquivo TypeScript e compilá-lo.</p>
+
+  <p>Copie e cole o código JavaScript a seguir no editor <strong>module01.ts</strong>.</p>
+
+  <code>
+    JavaScript
+
+    function addNumbers(x, y) {
+      return x + y;
+    }
+    console.log(addNumbers(3, 6));
+  </code>
+
+  <p>Observe que, embora você ainda não tenha compilado o código, o Visual Studio Code usou o suporte interno a TypeScript para verificá-lo quanto a tipos. Como antes, há erros de tipo nos dois parâmetros da função addNumbers.</p>
+
+  <p><img src="img/m01-visual-studio-code-intellisense-5.png" alt=""></p>
+
+  <ol>
+    <li>Editor do Visual Studio Code com IntelliSense, mostrando que há um erro de verificação de tipo no primeiro parâmetro da função addNumbers.</li>
+    <li>Atualize o código TypeScript para especificar um tipo para cada parâmetro. Substitua <mark>x</mark> por <mark>x: number</mark> e substitua <mark>y</mark> por <mark>y: number</mark>.</li>
+    <li>Salve o arquivo TypeScript. O compilador do TypeScript funciona apenas na versão salva do arquivo.</li>
+    <li>No prompt de comando do Terminal, digite <strong>tsc module01.ts</strong>. O compilador deve ser executado sem erros.</li>
+
+    <p>Observe que um novo arquivo JavaScript foi adicionado, mas não está na pasta build no Explorador. Talvez seja necessário atualizar o painel Explorador para exibir o arquivo. Quando você executa o comando <mark>tsc</mark> em apenas um arquivo, o compilador ignora o arquivo tsconfig.json.</p>
+
+    <li>Para carregar o arquivo de configuração e compilar todos os arquivos .ts na pasta, execute <mark>tsc</mark> sem nenhum nome de arquivo. Isso deve adicionar o arquivo <i>.js</i> à pasta build. Lembre-se de excluir o arquivo <i>.js</i> extra na pasta raiz.</li>
+    <li>Abra o arquivo <i>module01</i>.js e selecione o botão <strong>Dividir o Editor à Direita</strong> no canto superior direito para abrir um novo modo de exibição do editor.</li>
+
+    <p>Agora, você deve ser capaz de ver os arquivos .ts e <i>.js</i> lado a lado. Observe que eles são idênticos, exceto pelo fato de que o arquivo <i>.js</i> não inclui as novas anotações de tipo.</p>
+
+    <li>No prompt de comando do Terminal, insira <strong>node .\build\module01.js</strong>. Isso executa o JavaScript e exibe o resultado no log do console.</li>
+  </ol>
+
+  <h2>Adicionar um arquivo HTML</h2>
+
+  <p>Como etapa final, adicione um arquivo HTML ao projeto para que você possa executar e testar o código JavaScript.</p>
+
+  <ol>
+    <li>No Explorador, selecione o botão <strong>Novo Arquivo</strong>.</li>
+    <li>Digite o nome do arquivo <strong>module01.html</strong> e pressione <strong>Enter</strong>. O arquivo HTML aparece em um novo editor de código.</li>
+    <li>Copie e cole o HTML a seguir no editor e salve o arquivo.</li>
+
+    <code>
+    HTML
+    &lt!DOCTYPE html&gt
+    &lthtml lang="en" dir="ltr"&gt
+    &lthead&gt
+      &ltmeta charset="UTF-8"&gt
+      &lttitle&gtTest JavaScript&lt/title&gt
+    &lt/head&gt
+
+    &ltbody&gt
+      &lth1&gtTest JavaScript&lt/h1&gt
+      &ltp id="date"&gt&lt/p&gt
+      &ltp&gtThis page calls the script module01.js and is used for testing.&lt/p&gt
+      &ltscript src="./build/module01.js"&gt&lt/script&gt
+    &lt/body&gt
+    &lt/html&gt
+  </code>
+
+    <li>No Explorador, clique com o botão direito do mouse em <strong>module01.html</strong> e selecione <strong>Abrir no Navegador Padrão</strong>.</li>
+    <li>Ative as ferramentas para desenvolvedores do seu navegador e você estará pronto para iniciar a codificação em TypeScript!</li>
+  </ol>
+
+  <h2>Solução do exercício</h2>
+
+  <p>Você pode baixar o workspace do Visual Studio Code concluído do <a href="https://github.com/MicrosoftDocs/mslearn-typescript/tree/main/code/module-01/m01-end">repositório de código do GitHub</a>. Para executar a solução, você precisa primeiro instalar o seguinte software em seu computador:</p>
+
+  <ul>
+    <li>Visual Studio Code (ou o IDE de sua escolha)</li>
+    <li>npm (Gerenciador de Pacotes no Node)</li>
+    <li>tsc (Compilador do TypeScript)</li>
+  </ul>
+
+  <p>Para obter melhores resultados, siga as instruções completas para configurar seu ambiente e usar o compilador do TypeScript neste módulo. Depois de configurar o seu ambiente, execute qualquer um dos arquivos de solução ou configuração do laboratório no roteiro de aprendizagem <a href="https://learn.microsoft.com/pt-br/training/paths/build-javascript-applications-typescript/">Criar aplicativos JavaScript usando TypeScript</a>.</p>
+</body>
+
+</html>
