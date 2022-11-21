@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Tipos de coleção no TypeScript</title>
+</head>
+
+<body>
+  <h1>Tipos de coleção no TypeScript</h1>
+
+  <p>Os tipos de objeto são todos os tipos de classe, interface, matriz e literal (qualquer coisa que não seja um tipo primitivo). Agora, vamos examinar os tipos de matriz e de tupla.</p>
+
+  <h2>Matrizes</h2>
+
+  <p>O TypeScript, como o JavaScript, permite que você trabalhe com matrizes. As matrizes podem ser escritas de duas maneiras. Na primeira, você usa o tipo dos elementos seguidos por colchetes (<mark>[ ]</mark>) para indicar uma matriz desse tipo de elemento:</p>
+
+  <code>
+    TypeScript
+    
+    let list: number[] = [1, 2, 3];
+  </code>
+
+  <p>A segunda maneira usa um tipo <mark>Array</mark> genérico, usando a sintaxe <mark>Array&lttype&gt</mark>:</p>
+
+  <code>
+    TypeScript
+    
+    let list: Array&ltnumber&gt = [1, 2, 3];
+  </code>
+
+  <p>Não há vantagem em usar uma em relação à outra, portanto, cabe a você decidir qual sintaxe usar.</p>
+
+  <h2>Tuplas</h2>
+
+  <p>Ter uma matriz dos mesmos tipos de valor é útil, mas às vezes você tem uma matriz que contém valores de tipos mistos. Para essa finalidade, o TypeScript fornece o tipo de tupla. Para declarar uma tupla, use a sintaxe <mark>variableName: [type, type, ...]</mark>.</p>
+
+  <h2>Exercício – tuplas</h2>
+
+  <p>Abra o <a href="https://www.typescriptlang.org/play">Playground</a> e remova qualquer código existente.</p>
+
+  <p>Insira o seguinte código para criar uma tupla que contenha uma <mark>string</mark> e um <mark>number</mark>:</p>
+
+  <code>
+    TypeScript
+    
+    let person1: [string, number] = ['Marcia', 35];
+  </code>
+
+  <p>Tente adicionar outro item à matriz. Por exemplo:</p>
+
+  <code>
+    TypeScript
+    
+    let person1: [string, number] = ['Marcia', 35, true];
+  </code>
+
+  <p>Você verá que um erro é gerado porque os elementos na tupla <mark>array</mark> são fixados. A tupla <mark>person1</mark> é uma matriz que contém exatamente um valor <mark>string</mark> e um valor <mark>numeric</mark>.</p>
+
+  <p>Tente alternar a ordem dos itens na matriz. Por exemplo:</p>
+
+  <code>
+    TypeScript
+    
+    let person1: [string, number] = [35, 'Marcia'];
+  </code>
+
+  <p>Você verá um erro que indica que a ordem dos valores deve corresponder à ordem dos tipos.</p>
+</body>
+
+</html>
