@@ -8,14 +8,14 @@
 <h3>Objetivos de aprendizagem</h3>
 
 <ul>
-  <li>Introdução ao TypeScript</li>
-  <li>Declarar tipos de variáveis em TypeScript</li>
-  <li>Implementar interfaces no TypeScript</li>
-  <li>Desenvolver funções de tipo usando TypeScript</li>
-  <li>Declarar classes e criar instâncias delas no TypeScript</li>
-  <li>Definir genéricos no TypeScript</li>
-  <li>Acessar bibliotecas externas do TypeScript</li>
-  <li>Organizar códigos usando namespaces do TypeScript</li>
+  <li>Módulo 01 - Introdução ao TypeScript</li>
+  <li>Módulo 02 - Declarar tipos de variáveis em TypeScript</li>
+  <li>Módulo 03 - Implementar interfaces no TypeScript</li>
+  <li>Módulo 04 - Desenvolver funções de tipo usando TypeScript</li>
+  <li>Módulo 05 - Declarar classes e criar instâncias delas no TypeScript</li>
+  <li>Módulo 06 - Definir genéricos no TypeScript</li>
+  <li>Módulo 07 - Acessar bibliotecas externas do TypeScript</li>
+  <li>Módulo 08 - Organizar códigos usando namespaces do TypeScript</li>
 </ul>
 
 <hr>
