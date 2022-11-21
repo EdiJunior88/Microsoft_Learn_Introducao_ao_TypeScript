@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Exercício – enumerações</title>
+</head>
+
+<body>
+  <h1>Exercício – enumerações</h1>
+
+  <p>Vamos explorar os diferentes tipos de dados que o TypeScript disponibiliza e o impacto que eles têm em nosso código.</p>
+
+  <h2>O tipo enumerado</h2>
+
+  <p>Uma adição útil ao conjunto padrão de tipos de dados do JavaScript é o tipo de enumeração ou <mark>enum</mark>.</p>
+
+  <p>As enumerações oferecem um jeito fácil de trabalhar com conjuntos de constantes relacionadas. Um <mark>enum</mark>, é um nome simbólico para um conjunto de valores. As enumerações são tratadas como tipos de dados e você pode usá-las para criar conjuntos de constantes para uso com variáveis e propriedades.</p>
+
+  <p>Sempre que um procedimento aceita um conjunto limitado de variáveis, considere o uso de uma enumeração. As enumerações tornam o código mais claro e mais legível, especialmente quando são usados nomes significativos.</p>
+
+  <p>O uso de enumerações:</p>
+
+  <ul>
+    <li>Ajuda a reduzir erros causados pela transposição ou digitação incorreta de números.</li>
+    <li>Torna mais fácil alterar valores no futuro.</li>
+    <li>Torna o código mais fácil de ler, o que significa que é menos provável que os erros possam surgir nele.</li>
+    <li>Garante a compatibilidade com o futuro. Com as enumerações, o código será menos propenso a falhar se, posteriormente, alguém alterar os valores correspondentes aos nomes dos membros.</li>
+  </ul>
+
+  <h2>Criando uma enumeração</h2>
+
+  <p>As enumerações permitem que você especifique uma lista de opções disponíveis. Elas são extremamente úteis quando você tem um conjunto de valores que um determinado tipo de variável pode assumir. Vamos imaginar que você tem um campo em um banco de dados externo chamado <strong>ContractStatus</strong>, que contém os números 1, 2 ou 3, que representam os seguintes status de contato: <strong>Permanent</strong>, <strong>Temp</strong> e <strong>Apprentice</strong>. Criaremos uma enumeração com esses valores e exploraremos o suporte do TypeScript.</p>
+
+  <ol>
+    <li>Abra o Playground e remova qualquer código existente</li>
+    <li>Crie um enum para representar nosso cenário digitando o seguinte:</li>
+
+    <code>
+      TypeScript
+    
+      enum ContractStatus {
+        Permanent,
+        Temp,
+        Apprentice
+      }
+    </code>
+
+    <li>Agora, declare uma variável para um novo funcionário chamado <mark>employeeStatus</mark> do tipo <mark>ContractStatus</mark> e atribua <mark>"Temp"</mark>. Exiba o resultado no console.</li>
+
+    <code>
+      TypeScript
+    
+      let employeeStatus: ContractStatus = ContractStatus.Temp;
+      console.log(employeeStatus);
+    </code>
+
+    <li>Selecione <strong>Executar</strong>. Observe o valor exibido na janela <strong>Log</strong>. Qual valor é retornado?</li>
+    <li>Por padrão, os valores <mark>enum</mark> começam com um valor de 0, portanto, <mark>Permanent</mark> é 0, <mark>Temp</mark> é 1 e <mark>Apprentice</mark> é 2. Se você quiser que eles comecem com um valor diferente, neste caso 1, especifique isso na declaração <mark>enum</mark>. Faça as edições a seguir para que o <mark>enum</mark> inicie os valores em 1.</li>
+
+    <code>
+      TypeScript
+    
+      enum ContractStatus {
+        Permanent = 1,
+        Temp,
+        Apprentice
+      }
+    </code>
+
+    <li>Execute novamente o código, selecionando <strong>Executar</strong>. Observe que o valor exibido agora é <strong>2</strong>.</li>
+    <li>Para exibir o nome associado à enumeração, podemos usar o indexador fornecido. Adicione o seguinte à parte inferior do código:</li>
+
+    <code>
+      TypeScript
+    
+      console.log(ContractStatus[employeeStatus]);
+    </code>
+
+    <li>Execute o código. Observe que o valor <strong>Temp</strong> é exibido, que é o nome da enumeração para <strong>Temp</strong> ou <strong>2</strong>.</li>
+  </ol>
+</body>
+
+</html>
