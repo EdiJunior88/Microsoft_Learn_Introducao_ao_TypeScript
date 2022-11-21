@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Tipos any e unknown no TypeScript</title>
+</head>
+
+<body>
+  <h1>Tipos any e unknown no TypeScript</h1>
+
+  <p>Há ocasiões em que você precisará trabalhar com valores que são desconhecidos no momento que desenvolve seu código ou que são de um intervalo restrito de tipos de valor. Nesses casos, você pode usar os tipos any e unknown e usar a declaração de tipo e as proteções de tipo para manter o controle sobre o que o código tem permissão para fazer com os valores que são passados.</p>
+
+  <h2>Qualquer tipo</h2>
+
+  <p>O tipo any é um tipo que pode representar qualquer valor de JavaScript sem restrições. Isso pode ser útil quando você está esperando um valor de uma biblioteca de terceiros ou de entradas de usuário em que o valor é dinâmico porque o tipo any permitirá que você reatribua diferentes tipos de valores. E, como mencionado anteriormente, o uso do tipo any permite que você migre gradualmente seu código JavaScript para usar tipos estáticos no TypeScript.</p>
+
+  <p>O seguinte exemplo declara uma variável do tipo any e atribui valores a ela:</p>
+
+  <code>
+    TypeScript
+
+    let randomValue: any = 10;
+    randomValue = 'Mateo'; // OK
+    randomValue = true; // OK
+  </code>
+
+  <p>Quando este exemplo é compilado, ele não gera um erro porque o tipo any abrange valores de cada tipo possível. O tipo any recusa a verificação de tipo e não força você a fazer nenhuma verificação antes de chamar, construir ou acessar propriedades nesses valores.</p>
+
+  <p>O uso do tipo any neste exemplo permite que você chame:</p>
+
+  <ul>
+    <li>Uma propriedade que não existe para o tipo.</li>
+    <li>randomValue como uma função.</li>
+    <li>Um método que se aplica somente a um tipo string.</li>
+  </ul>
+
+  <p>Como randomValue está registrado como any, todos os exemplos a seguir são TypeScript válidos e não geram um erro em tempo de compilação. No entanto, podem ocorrer erros de runtime dependendo do tipo de dados real da variável. Considerando o exemplo anterior em que randomValue está definido como um valor booliano, as seguintes linhas de código vão gerar problemas no runtime:</p>
+
+  <code>
+    TypeScript
+
+    console.log(randomValue.name); // Logs "undefined" to the console
+    randomValue(); // Returns "randomValue is not a function" error
+    randomValue.toUpperCase(); // Returns "randomValue is not a function" error
+  </code>
+
+  <div>
+    <p>Importante</p>
+
+    <p>Lembre-se de que toda a conveniência do any vem ao custo da perda da segurança de tipos. A segurança de tipos é uma das principais motivações para usar o TypeScript. Evite usar any quando não for necessário.</p>
+  </div>
+
+  <h2>Tipo unknown</h2>
+
+  <p>Embora seja flexível, o tipo any pode causar erros inesperados. Para resolver isso, o TypeScript introduziu o tipo unknown.</p>
+
+  <p>O tipo unknown é semelhante ao tipo any, pois qualquer valor pode ser atribuído ao tipo unknown. No entanto, você não pode acessar nenhuma propriedade de um tipo unknown, nem os chamar ou os construir.</p>
+
+  <p>Este exemplo altera o tipo any no exemplo anterior para unknown. Agora, ele gerará erros de verificação de tipo e impedirá a compilação do código até que você execute a ação apropriada para resolvê-los.</p>
+
+  <code>
+    TypeScript
+
+    let randomValue: unknown = 10;
+    randomValue = true;
+    randomValue = 'Mateo';
+
+    console.log(randomValue.name); // Error: Object is of type unknown
+    randomValue(); // Error: Object is of type unknown
+    randomValue.toUpperCase(); // Error: Object is of type unknown
+  </code>
+
+  <div>
+    <p>Observação</p>
+
+    <p>A principal diferença entre any e unknown é que você não pode interagir com uma variável do tipo unknown; fazer isso gera um erro do compilador. O any ignora qualquer verificação de tempo de compilação e o objeto é avaliado em runtime; se o método ou a propriedade existir, ele se comportará conforme o esperado.</p>
+  </div>
+
+  <h2>Asserção de tipo</h2>
+
+  <p>Se você precisar tratar uma variável como um tipo de dados diferente, poderá usar uma declaração de tipo. Uma declaração de tipo informa ao TypeScript que você executou as verificações especiais necessárias antes de chamar a instrução. Ele informa ao compilador "confie em mim, eu sei o que estou fazendo". Uma declaração de tipo é como uma cast de tipo em outras linguagens, mas não executa nenhuma verificação especial ou reestruturação de dados. Isso não tem impacto em runtime e é usado puramente pelo compilador.</p>
+
+  <p>As asserções de tipo têm duas formas. Uma é a as-sintaxe:</p>
+
+  <p>(randomValue as string).toUpperCase();</p>
+
+  <p>A outra versão é a sintaxe "colchete angular":</p>
+
+  <p>(&ltstring&gtrandomValue).toUpperCase();</p>
+
+  <div>
+    <p>Observação</p>
+
+    <p>A as é a sintaxe preferida. Alguns aplicativos do TypeScript, como o JSX, podem ser confundidos ao usar o &lt &gt para conversões de tipo.</p>
+  </div>
+
+  <p>O exemplo a seguir executa a verificação necessária para determinar que randomValue é um string antes de usar a declaração de tipo para chamar o método toUpperCase.</p>
+
+  <code>
+    TypeScript
+
+    let randomValue: unknown = 10;
+    randomValue = true;
+    randomValue = 'Mateo';
+    
+    if (typeof randomValue === "string") {
+      console.log((randomValue as string).toUpperCase()); //* Returns MATEO to the console.
+    } else {
+      console.log("Error - A string was expected here."); //* Returns an error message.
+    }
+  </code>
+
+  <p>O TypeScript agora pressupõe que você tenha feito a verificação necessária. A declaração de tipo diz que randomValue deve ser tratado como uma string e o método toUpperCase pode ser aplicado.</p>
+
+  <h2>Protetores de tipo</h2>
+
+  <p>O exemplo anterior demonstra o uso de typeof no bloco if para examinar o tipo de uma expressão em runtime. Isso é chamado de proteção de tipo.</p>
+
+  <p>Você pode estar familiarizado com o uso do typeof e instanceof do JavaScript para testar essas condições. O TypeScript compreende essas condições e alterará a inferência de tipos de maneira adequada quando usada em um bloco if.</p>
+
+  <p>Você pode usar as seguintes condições para saber qual é o tipo de uma variável:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Predicado</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><mark>string</mark></td>
+        <td><mark>typeof s === "string"</mark></td>
+      </tr>
+
+      <tr>
+        <td><mark>number</mark></td>
+        <td><mark>typeof n === "number"</mark></td>
+      </tr>
+
+      <tr>
+        <td><mark>boolean</mark></td>
+        <td><mark>typeof b === "boolean"</mark></td>
+      </tr>
+
+      <tr>
+        <td><mark>undefined</mark></td>
+        <td><mark>typeof undefined === "undefined"</mark></td>
+      </tr>
+
+      <tr>
+        <td><mark>function</mark></td>
+        <td><mark>typeof f === "function"</mark></td>
+      </tr>
+
+      <tr>
+        <td><mark>array</mark></td>
+        <td><mark>Array.isArray(a)</mark></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
