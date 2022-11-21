@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Tipos primitivos no TypeScript</title>
+</head>
+
+<body>
+  <h1>Tipos primitivos no TypeScript</h1>
+
+  <p>Vamos começar analisando os tipos mais básicos e comuns que você pode encontrar ao escrever código JavaScript ou TypeScript. Posteriormente, eles formarão os principais blocos de construção de tipos mais complexos.</p>
+
+  <h2>Tipos boolianos</h2>
+
+  <p>O tipo de dados mais básico é o valor <mark>true</mark> ou <mark>false</mark>, conhecido como booliano.</p>
+
+  <p>Por exemplo:</p>
+
+  <code>
+    TypeScript
+
+    let flag: boolean;
+    let yes = true;
+    let no = false;
+  </code>
+
+  <h2>Tipos de número e BigInteger</h2>
+
+  <p>Como no JavaScript, todos os números no TypeScript são valores de ponto flutuante ou BigIntegers. Esses números de ponto flutuante obtêm o tipo <mark>number</mark>, enquanto BigIntegers obtém o tipo <mark>bigint</mark>. Além de literais hexadecimais e decimais, o TypeScript também é compatível com literais binários e octais introduzidos no ECMAScript 2015.</p>
+
+  <p>Por exemplo:</p>
+
+  <code>
+    TypeScript
+
+    let x: number;
+    let y = 0;
+    let z: number = 123.456;
+    let big: bigint = 100n;
+  </code>
+
+  <h2>Tipo de cadeia de caracteres</h2>
+
+  <p>A palavra-chave <mark>string</mark> representa sequências de caracteres armazenados como unidades de código UTF-16 Unicode. Como o JavaScript, o TypeScript também usa aspas duplas <mark>(")</mark> ou aspas simples <mark>(')</mark> para circundar dados de cadeia de caracteres.</p>
+
+  <p>Alguns exemplos:</p>
+
+  <code>
+    TypeScript
+
+    let s: string;
+    let empty = "";
+    let abc = 'abc';
+  </code>
+
+  <p>No TypeScript, você também pode usar cadeias de caracteres de modelo, que podem abranger várias linhas e ter expressões inseridas. Essas cadeias de caracteres são circundadas pelo caractere de acento grave/aspas simples ( ` ) e as expressões inseridas são no formato <mark>${ expr }</mark>.</p>
+
+  <p>Por exemplo:</p>
+
+  <code>
+    TypeScript
+
+    let firstName: string = "Mateo";
+    let sentence: string = `My name is ${firstName}.
+    I am new to TypeScript.`;
+    console.log(sentence);
+  </code>
+
+  <p>Esse exemplo gera a saída:</p>
+
+  <code>
+    Console
+    
+    My name is Mateo.
+    I am new to TypeScript.
+  </code>
+
+  <h2>Os tipos void, null e undefined</h2>
+
+  <p>O JavaScript e o TypeScript têm dois valores primitivos usados para sinalizar valor ausente ou não inicializado: <mark>null</mark> e <mark>undefined</mark>. Esses tipos são mais úteis no contexto das funções, portanto, vamos discuti-los mais detalhadamente em um módulo posterior.</p>
+</body>
+
+</html>
