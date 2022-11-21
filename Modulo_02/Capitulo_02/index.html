@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Visão geral sobre tipos no TypeScript</title>
+</head>
+
+<body>
+  <h1>Visão geral sobre tipos no TypeScript</h1>
+
+  <p>O principal benefício do TypeScript é que ele permite que você adicione tipos estáticos ao seu código JavaScript. Os tipos colocam restrições estáticas em entidades de programa, como funções, variáveis e propriedades, para que compiladores e ferramentas de desenvolvimento possam oferecer melhor verificação e assistência durante o desenvolvimento.</p>
+
+  <p>O sistema de tipos do tempo de compilação estático do TypeScript modela de maneira minuciosa o sistema de tipo de tempo de execução dinâmico do JavaScript, permitindo que você expresse com precisão as relações de tipo que devem existir quando os programas são executados e têm essas suposições previamente validadas pelo compilador do TypeScript. A análise de tipo do TypeScript ocorre inteiramente em tempo de compilação e não adiciona sobrecarga de tempo de execução ao programa.</p>
+
+  <p>Os tipos estáticos também oferecem uma forma de documentar melhor a intenção do seu código, o que ajuda você e outros desenvolvedores a entendê-lo.</p>
+
+  <h2>Declaração de variáveis let e const</h2>
+
+  <p><a href="https://www.ecma-international.org/ecma-262/6.0/">ECMAScript 2015</a> adicionou as palavras-chave <mark>let</mark> e <mark>const</mark> para a declaração de variável em JavaScript, o que eliminou alguns dos problemas associados à palavra-chave <mark>var</mark> em versões anteriores. Essa alteração possibilita declarar variáveis com escopo de nível de bloco e impede que você declare a mesma variável várias vezes.</p>
+
+  <p>O TypeScript incentiva o uso das palavras-chave <mark>let</mark> e <mark>const</mark> para declarações de variáveis.</p>
+
+  <div>
+    <p>Observação</p>
+    <p>Como lembrete, a diferença entre elas é que as declarações <mark>let</mark> podem ser feitas sem inicialização, enquanto as declarações <mark>const</mark> são sempre inicializadas com um valor. E as declarações <mark>const</mark>, uma vez atribuídas, nunca poderão ser reatribuídas.</p>
+  </div>
+
+  <h2>Exercício – Inferência de tipos no TypeScript</h2>
+
+  <p>Você pode associar tipos com variáveis por meio de anotações de tipo explícito ou por meio de inferência de tipos implícita.</p>
+
+  <p>Embora seja recomendado, as anotações de tipo explícitas são opcionais no TypeScript. Para fazer isso, use a sintaxe <mark>variableName: type</mark>. Essa instrução <mark>let myVariable: number</mark> declara a variável como um tipo de número sem inicializá-la. Como alternativa, você também pode inicializar a variável usando <mark>let myVariable: number = 10</mark>.</p>
+
+  <p>Para implicar o tipo de variável por meio da inferência de tipos, basta usar o mesmo formato usado no JavaScript. Por exemplo, <mark>let myVariable = 10</mark> infere que a variável é do tipo <mark>number</mark> porque ela é inicializada com o valor <mark>10</mark>.</p>
+
+  <p>Vamos abrir o <a href="https://www.typescriptlang.org/play">Playground</a> e ver como isso funciona.</p>
+
+  <ol>
+    <li>Insira as seguintes declarações de variável:</li>
+    <code>
+      TypeScript
+      let x: number; //* Explicitly declares x as a number type
+      let y = 1; //* Implicitly declares y as a number type
+      let z; //* Declares z without initializing it
+    </code>
+    <li>Agora o TypeScript trata <mark>x</mark> como um tipo <mark>number</mark>. O TypeScript também infere o tipo de <mark>y</mark> para ser um tipo de número, pois esse é o tipo do valor usado para inicializá-la. Mas o que acontece se você tentar atribuir um tipo de valor diferente a ela? E o que acontece com a variável z?</li>
+    <li>Abra a guia <strong>Erros</strong> no Playground para monitorar se houver erros.</li>
+    <li>Digite <mark>x = 1</mark>. Isso deverá funcionar como esperado, sem erros.</li>
+    <li>Digite <mark>x = "one"</mark>. Como esperado, isso gera o erro <strong>O tipo "string" não pode ser atribuído ao tipo "number"</strong> porque a verificação de tipo estático não permite que um <mark>string</mark> seja atribuído à variável.</li>
+    <li>Digite <mark>y = "one"</mark>. Você verá que o mesmo erro é gerado. Isso ocorre porque o TypeScript inferiu que y é do tipo <mark>number</mark>.</li>
+    <li>Insira o nome da variável <mark>y</mark> seguido por um ponto e você observará mais uma coisa. Embora você não tenha especificado explicitamente um tipo para a variável <mark>y</mark>, o IntelliSense está fornecendo métodos que se aplicam somente a um tipo <mark>number</mark>.</li>
+    <li>Insira <mark>z = 1</mark> e <mark>z = "one"</mark>. O TypeScript aceitou ambos, mas por quê? Isso funciona da mesma forma que no JavaScript porque a variável <mark>z</mark> agora pode aceitar qualquer valor atribuído a ela. (O TypeScript inferiu que z é do tipo <mark>any</mark> porque você não atribuiu um tipo nem a inicializou quando ela foi declarada. Você aprenderá mais sobre o tipo <mark>any</mark> mais adiante.)</li>
+  </ol>
+
+  <p>Embora seja possível inferir implicitamente tipos por meio da inferência de tipos no TypeScript, você deve fazer isso? Por meio da inferência de tipos, você obtém parte do benefício da verificação de tipo estático e do IntelliSense e isso permite que você migre gradualmente para declarações de tipo explícitas em seus projetos. Mas as declarações de tipo explícitas também fornecem uma forma de documentar melhor a intenção do seu código e fornecem um caminho mais deliberado no futuro.</p>
+
+  <h2>Tipos e subtipos no TypeScript</h2>
+
+  <p>Antes de mergulhar no uso de tipos para declaração de variável, vamos examinar os tipos e subtipos no TypeScript.</p>
+
+  <h2>Qualquer tipo</h2>
+
+  <p>Todos os tipos no TypeScript são subtipos de um tipo principal chamado tipo <mark>any</mark>. O tipo <mark>any</mark> é um tipo que pode representar qualquer valor de JavaScript sem restrições. Todos os outros tipos são categorizados como tipos primitivos, tipos de objeto ou parâmetros de tipo. Esses tipos apresentam várias restrições estáticas em seus valores.</p>
+
+  <img src="img/m02-types.png" alt="">
+
+  <h2>Tipos primitivos</h2>
+
+  <p>Os tipos primitivos são os tipos <mark>boolean</mark>, <mark>number</mark>, <mark>string</mark>, <mark>void</mark>, <mark>null</mark> e <mark>undefined</mark> juntamente com a enumeração ou os tipos enum definidos pelo usuário. O tipo <mark>void</mark> existe apenas para indicar a ausência de um valor, como em uma função sem valor retornado. Os tipos <mark>null</mark> e <mark>undefined</mark> são subtipos de todos os outros tipos. Não é possível referenciar explicitamente os tipos nulos e indefinidos. Somente os valores desses tipos podem ser referenciados, usando os literais <mark>null</mark> e <mark>undefined</mark>.</p>
+
+  <h2>Tipos de objeto e parâmetros de tipo</h2>
+  
+  <p>Os tipos de objeto são todos os tipos de classe, interface, matriz e literal (qualquer coisa que não seja um tipo primitivo).</p>
+
+  <p>Tipos de classe e de interface são introduzidos por meio de declarações de classe e de interface e são referenciados pelo nome fornecido a eles em suas declarações. Tipos de classe e de interface podem ser tipos genéricos que têm um ou mais parâmetros de tipo. Você aprenderá mais sobre esses tipos de objeto em módulos posteriores.</p>
+</body>
+
+</html>
