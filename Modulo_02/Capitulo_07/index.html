@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Laboratório – usar tipos no TypeScript</title>
+</head>
+
+<body>
+  <h1>Laboratório – usar tipos no TypeScript</h1>
+
+  <p>Neste laboratório, você escreverá o JavaScript em cada um dos exercícios abaixo no TypeScript, deixando cada uma das variáveis fortemente tipadas.</p>
+
+  <h2>Exercício 1: modificar o código JavaScript existente para ter variáveis fortemente tipadas</h2>
+
+  <ol>
+    <li>Clone o repositório inicial inserindo o conteúdo a seguir no prompt de comando.</li>
+    <code>
+      Bash
+    
+      git clone https://github.com/MicrosoftDocs/mslearn-typescript
+      cd mslearn-typescript/code/module-02/m02-start
+      code .
+    </code>
+
+    <li>Abra o arquivo <strong>module02.ts</strong> e localize <strong>Exercício 1</strong>.</li>
+    <li>Modifique o código para adicionar tipos às declarações de variável. O código JavaScript compilado deve ter a mesma aparência do exemplo original quando você terminar.</li>
+    <code>
+      JavaScript
+    
+      /* EXERCISE 1
+      TODO: Modify the code to add types to the variable declarations.
+
+      The resulting JavaScript should look the same as the original example when you're done. */
+
+      let firstName;
+      let lastName;
+      let fullName;
+      let age;
+      let ukCitizen;
+
+      firstName = 'Rebecca';
+      lastName = 'Smith';
+      age = 42;
+      ukCitizen = false;
+      fullName = firstName + " " + lastName;
+
+      if (ukCitizen) {
+        console.log("My name is " + fullName + ", I'm " + age + ", and I'm a citizen of the United Kingdom.");
+      } else {
+        console.log("My name is " + fullName + ", I'm " + age + ", and I'm not a citizen of the United Kingdom.");
+      }
+    </code>
+  </ol>
+
+  <h2>Exercício 2: modificar o código JavaScript existente para garantir resultados operacionais usando variáveis fortemente tipadas</h2>
+
+  <ol>
+    <li>Localize o <strong>Exercício 2</strong> em <strong>module02.ts</strong>.</li>
+    <li>Você pode usar tipos para garantir resultados de operações. Execute o código como está e modifique-o para ter variáveis fortemente tipadas.</li>
+    <li>Resolva os erros encontrados para que o resultado retornado seja 12.</li>
+
+    <code>
+      JavaScript
+      
+      /* EXERCISE 2
+      TODO: Run the code as is and then modify it to have strongly typed variables.
+      Then, address any errors you find so that the result returned to a is 12. */
+
+      let x;
+      let y;
+      let a;
+
+      x = 'five';
+      y = 7;
+      a = x + y;
+
+      console.log(a);
+    </code>
+  </ol>
+
+  <h2>Exercício 3: implementar um tipo enumerado</h2>
+
+  <ol>
+    <li>Localize o <strong>Exercício 3</strong> em <strong>module02.ts</strong>.</li>
+    <li>Implemente um tipo <mark>enum</mark> chamado <mark>Season</mark> que represente as constantes "<mark>Fall</mark>", "<mark>Winter</mark>", "<mark>Spring</mark>" e "<mark>Summer</mark>".</li>
+    <li>Atualize a função para passar a estação referenciando um item na <mark>enum</mark>, por exemplo <mark>Season.Fall</mark>, em vez da cadeia de caracteres literal "<mark>Fall</mark>".</li>
+
+    <code>
+      JavaScript
+      
+      /* EXERCISE 3
+      TODO: In the following code, implement an enum type called Season that represents the constants "Fall", "Winter", "Spring", and "Summer". Then, update the function so you can pass in the season by referencing an item in the enum, for example Season.Fall, instead of the literal string "Fall". */
+
+      function whichMonths(season) {
+      let monthsInSeason: string;
+      switch (season) {
+      case "Fall":
+      monthsInSeason = "September to November";
+      break;
+      case "Winter":
+      monthsInSeason = "December to February";
+      break;
+      case "Spring":
+      monthsInSeason = "March to May";
+      break;
+      case "Summer":
+      monthsInSeason = "June to August";
+      }
+      return monthsInSeason;
+      }
+      console.log(whichMonths("Fall"));
+    </code>
+  </ol>
+
+  <h2>Exercício 4: declarar um tipo de matriz</h2>
+
+  <ol>
+    <li>Localize o <strong>Exercício 4</strong> em <strong>module02.ts</strong>.</li>
+    <li>Declare a matriz como o tipo para corresponder ao tipo dos itens na matriz.</li>
+
+    <code>
+      JavaScript
+    
+      /* EXERCISE 4
+      TODO: Declare the array as the type to match the type of the items in the array. */
+
+      let randomNumbers;
+      let nextNumber;
+
+      for (let i = 0; i < 10; i++) { 
+        nextNumber=Math.floor(Math.random() * (100 - 1)) + 1;
+        randomNumbers.push(nextNumber); 
+      } 
+
+      console.log(randomNumbers);
+    </code>
+  </ol>
+
+  <h2>Desafie-se! </h2>
+  
+  <p>Para um desafio adicional, pegue um JavaScript existente que você tenha escrito ou que você encontre na Web e reescreva-o adicionando tipos básicos usando o TypeScript. Você pode e colar o JavaScript no Playground e editá-lo ou usar outro editor como o Visual Studio Code. </p>
+  
+  <h2>Solução do laboratório </h2>
+  
+  Veja a versão final do código digitando o comando a seguir no prompt de comando. 
+  
+  <code>
+    Bash
+    
+    cd ../m02-end
+    code .
+  </code>
+  
+  <p>Abra o arquivo <strong>module02.ts</strong> para ver a solução deste laboratório. Confira a seção <strong>Configuração do laboratório</strong> acima para obter mais informações sobre como configurar o ambiente de desenvolvimento para executar a solução.</p>
+</body>
+
+</html>
