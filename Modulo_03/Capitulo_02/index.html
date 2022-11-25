@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Visão geral das interfaces no TypeScript</title>
+</head>
+
+<body>
+  <h1>Visão geral das interfaces no TypeScript</h1>
+
+  <p>Um dos principais princípios do TypeScript é que a verificação de tipo se concentra na forma que os valores têm. Isso às vezes é chamado de "tipagem pato" ou "subtipagem estrutural". No TypeScript, as interfaces preenchem a função de nomenclatura desses tipos e são uma forma eficiente de definir um "contrato de código" dentro do seu código, bem como contratos com código fora do seu projeto.</p>
+
+  <p>Vamos começar com uma visão geral das interfaces, incluindo o que elas são e como você pode usá-las em seu código TypeScript.</p>
+
+  <h2>O que é uma interface?</h2>
+
+  <p>Você pode usar interfaces para descrever um objeto, nomear e parametrizar os tipos do objeto e compor tipos de objetos nomeados existentes em novos.</p>
+
+  <p>Essa interface simples define as duas propriedades e um método de um objeto <mark>Employee</mark>.</p>
+
+  <code>
+    TypeScript
+    
+    interface Employee {
+      firstName: string;
+      lastName: string;
+      fullName(): string;
+    }
+  </code>
+
+  <p>Observe que a interface não inicializa nem implementa as propriedades declaradas dentro dela. Isso ocorre porque o único trabalho de uma interface é descrever um tipo. Ela define o que o contrato de código exige, enquanto uma variável, função ou classe que implementa a interface atende ao contrato fornecendo os detalhes de implementação necessários.</p>
+
+  <p>Depois de definir uma interface, você pode usá-la como um tipo e obter todos os benefícios da verificação de tipo e do IntelliSense.</p>
+
+  <p>Este exemplo implementa a interface declarando uma variável do tipo <mark>Employee</mark>. Ela preenche o contrato passando valores para as propriedades <mark>firstName</mark> e <mark>lastName</mark> e especificando que o método <mark>fullName</mark> deve combinar as propriedades <mark>firstName</mark> e <mark>lastName</mark> e retornar o resultado.</p>
+
+  <code>
+    TypeScript
+    
+    let employee: Employee = {
+      firstName : "Emil",
+      lastName: "Andersson",
+      fullName(): string {
+      return this.firstName + " " + this.lastName;
+      }
+    }
+
+    employee.firstName = 10; //* Error - Type 'number' is not assignable to type 'string'
+  </code>
+
+  <p>A verificação de tipo garante que o número <mark>10</mark> não seja atribuível a <mark>employee.firstName</mark> porque ele está esperando um <mark>string</mark>.</p>
+
+  <p>Como o TypeScript tem um sistema de tipos estruturais, um tipo de interface com um conjunto específico de membros é considerado idêntico a e pode ser substituído por outro tipo de interface ou literal de tipo de objeto com um conjunto idêntico de membros. Se uma interface e uma classe implementarem a mesma estrutura, elas poderão ser usadas de modo intercambiável. Confira Tipagem Estrutural no Playground para obter um exemplo.</p>
+
+  <p>As interfaces não têm representação em tempo de execução; elas são puramente constructos de tempo de compilação. As interfaces são particularmente úteis para documentar e validar a forma necessária de propriedades, objetos passados como parâmetros e objetos retornados de funções. Isso permite que você detecte erros e verifique se está passando os parâmetros certos no tempo de compilação, em vez de esperar para descobrir sobre eles no runtime.</p>
+
+  <h2>Motivos para usar uma interface em TypeScript</h2>
+
+  <p>As interfaces geralmente são o ponto-chave de contato entre duas partes do código do TypeScript, especialmente ao trabalhar com código JavaScript existente ou objetos JavaScript internos.</p>
+
+  <p>Você pode usar uma interface para:</p>
+
+  <ul>
+    <li>Criar nomes abreviados para tipos comumente usados. Até mesmo com uma interface simples como a declarada no exemplo anterior, você ainda obtém o benefício do IntelliSense e da verificação de tipo.</li>
+    <li>Impulsionar a consistência em um conjunto de objetos, porque cada objeto que implementa a interface opera sob as mesmas definições de tipo. Isso pode ser útil quando você está trabalhando com uma equipe de desenvolvedores e deseja garantir que os valores apropriados estejam sendo passados para propriedades, construtores ou funções. Por exemplo, os objetos que implementam uma interface precisam implementar todos os membros necessários da interface. Portanto, se você não passar todos os parâmetros necessários do tipo correto, o compilador do TypeScript vai gerar um erro.</li>
+    <li>Descreva as APIs do JavaScript existentes e esclareça os tipos de retorno e os parâmetros de função. Isso é especialmente útil quando você está trabalhando com bibliotecas JavaScript, como o jQuery. Uma interface pode fornecer uma compreensão clara do que uma função está esperando e do que ela retornará sem necessidade de várias consultas à documentação.</li>
+  </ul>
+
+  <h2>Quais as diferenças entre uma interface e um alias de tipo?</h2>
+
+  <p>A interface <mark>Employee</mark> acima também pode ser expressa como um alias de tipo usando a palavra-chave <mark>type</mark>:</p>
+
+  <code>
+    TypeScript
+    
+    type Employee = {
+      firstName: string;
+      lastName: string;
+      fullName(): string;
+    }
+  </code>
+
+  <p>Um alias de tipo é uma definição de um tipo de dados, por exemplo, uma união, primitivo, interseção, tupla ou outro tipo. As interfaces, por outro lado, são um modo de descrever as formas de dados, por exemplo, um objeto. Os aliases de tipo podem agir como interfaces; no entanto, há algumas diferenças sutis. A principal diferença é que um alias de tipo não pode ser reaberto para a adição de novas propriedades, enquanto uma interface é sempre extensível. Além disso, você só pode descrever uma união ou tupla usando um alias de tipo.</p>
+</body>
+
+</html>
