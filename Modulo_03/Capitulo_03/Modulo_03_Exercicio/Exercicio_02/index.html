@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Exercício – estender uma interface no TypeScript</title>
+</head>
+
+<body>
+  <h1>Exercício – estender uma interface no TypeScript</h1>
+
+  <p>As interfaces podem estender uma à outra. Isso permite que você copie os membros de uma interface em outra, proporcionando a você mais flexibilidade na maneira de separar suas interfaces em componentes reutilizáveis.</p>
+
+  <p>Ao estender uma interface com uma ou mais interfaces, estas regras se aplicam:</p>
+
+<ul>
+    <li>Você precisa implementar todas as propriedades necessárias de todas as interfaces.</li>
+    <li>Duas interfaces poderão ter a mesma propriedade se a propriedade tiver exatamente o mesmo nome e o mesmo tipo.</li>
+    <li>Se duas interfaces tiverem uma propriedade com o mesmo nome, mas tipos diferentes, você precisará declarar uma nova propriedade de modo que a propriedade resultante seja um subtipo de ambas as interfaces.</li>
+</ul>
+
+  <h2>Estender uma interface</h2>
+
+  <p>Há vários tipos de sobremesas que você pode criar por meio da interface <mark>IceCream</mark> (sundaes, milkshakes e assim por diante), mas todos têm propriedades diferentes além das declaradas em <mark>IceCream</mark>. Vamos estender a interface com uma nova chamada Sundae e declarar as propriedades dela.</p>
+
+  <ol>
+    <li>Continue seu projeto no <a href="https://www.typescriptlang.org/play">Playground</a>.</li>
+    <li>Na declaração de interface <mark>IceCream</mark>, declare uma nova interface chamada <mark>Sundae</mark> que <mark>extends</mark> a interface <mark>IceCream</mark>. A interface <mark>Sundae</mark> inclui quatro novas propriedades:</li>
+    <ul>
+      <li><mark>sauce</mark> do tipo literal <mark>'chocolate' | 'caramel' | 'strawberry'</mark></li>
+      <li><mark>nuts</mark> do tipo <mark>boolean</mark> (opcional)</li>
+      <li><mark>whippedCream</mark> do tipo <mark>boolean</mark> (opcional)</li>
+      <li><mark>instructions</mark> do tipo <mark>boolean</mark> (opcional)</li>
+    </ul>
+
+    <code>
+      TypeScript
+      
+      interface Sundae extends IceCream {
+        sauce: 'chocolate' | 'caramel' | 'strawberry';
+        nuts?: boolean;
+        whippedCream?: boolean;
+        instructions?: boolean;
+      }
+    </code>
+
+    <li>Você deve observar um erro na nova interface. O TypeScript descobriu que ambas as interfaces <mark>IceCream</mark> e <mark>Sundae</mark> têm uma propriedade chamada <mark>instructions</mark>, mas elas são de tipos diferentes. Para resolver esse erro, faremos com que as propriedades <mark>instructions</mark> passem a ter o mesmo tipo, <mark>string</mark>.</li>
+    <li>Vamos experimentar a nova interface alterando a variável <mark>myIceCream</mark> para o tipo <mark>Sundae</mark>. Isso gera um erro, informando que a <strong>Propriedade 'sauce' está ausente no tipo '{flavor: String; Scoops: Number;}', mas é necessária no tipo 'Sundae'</strong>. Você adicionou quatro novas propriedades à interface Sundae, mas apenas a propriedade sauce era necessária.</li>
+
+    <code>
+      TypeScript
+      
+      let myIceCream: Sundae = {
+        flavor: 'vanilla',
+        scoops: 2
+      }
+    </code>
+
+    <li>Corrija o erro adicionando a propriedade necessária, juntamente com as propriedades opcionais que você deseja usar.</li>
+
+    <code>
+      TypeScript
+      
+      let myIceCream: Sundae = {
+        flavor: 'vanilla',
+        scoops: 2,
+        sauce: 'caramel',
+        nuts: true
+      }
+    </code>
+
+    <li>Agora, tente implementar a interface <mark>Sundae</mark> na função <mark>tooManyScoops</mark>. Você não verá nenhum erro na função propriamente dita, mas a chamada de função na próxima linha vai gerar um erro. Isso ocorre porque ela está esperando três parâmetros necessários. Corrija o erro adicionando a propriedade <mark>sauce</mark> à chamada de função.</li>
+
+    <code>
+      TypeScript
+      
+      function tooManyScoops(dessert: Sundae) {
+        if (dessert.scoops >= 4) {
+          return dessert.scoops + ' is too many scoops!';
+        } else {
+          return 'Your order will be ready soon!';
+        }
+      }
+
+      console.log(tooManyScoops({flavor: 'vanilla', scoops: 5, sauce: 'caramel'}));
+    </code>
+  </ol>
+</body>
+
+</html>
