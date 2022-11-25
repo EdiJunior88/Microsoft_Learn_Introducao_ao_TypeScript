@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title> Exercício – declarar uma interface e criar uma instância dela no TypeScript</title>
+</head>
+
+<body>
+  <h1>Exercício – declarar uma interface e criar uma instância dela no TypeScript</h1>
+
+  <p>Para declarar uma <mark>interface</mark>, comece com a palavra-chave interface seguida pelo nome da interface (o identificador). O nome da interface não pode ser um dos nomes de tipo pré-definidos no sistema de tipos. E, por convenção, os nomes de interface são escritos em PascalCase.</p>
+
+  <div>
+    <p>Observação</p>
+
+    <p>As diretrizes de codificação do TypeScript sugerem que as interfaces não devem começar com a letra I.</p>
+  </div>
+
+  <p>Em seguida, defina as propriedades (ou membros) da interface e os respectivos tipos. As propriedades podem ser obrigatórias, opcionais ou somente leitura.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tipos de propriedades</th>
+        <th>Descrição</th>
+        <th>Exemplo</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Obrigatório</td>
+        <td>Todas as propriedades são necessárias, a menos que especificado de outra forma.</td>
+        <td>
+          <code>
+            firstName:
+            string;
+          </code>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Opcional</td>
+        <td>Adicione um ponto de interrogação (?) ao final do nome da propriedade. Use esse tipo para propriedades que não são obrigatórias. Isso impedirá que o sistema de tipos gere um erro se a propriedade for omitida.</td>
+        <td>
+          <code>
+            firstName?:
+            string;
+          </code>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Somente leitura</td>
+        <td>Adicione a palavra-chave readonly na frente do nome da propriedade. Use esse tipo para propriedades que só devem ser modificadas quando um objeto é criado pela primeira vez.</td>
+        <td>
+          <code>
+            readonly
+            firstName:
+            string;
+          </code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Declarar uma interface com membros</h2>
+
+  <ol>
+    <li>Abra o <a href="https://www.typescriptlang.org/play">Playground</a> e remova qualquer código existente.</li>
+    <li>Declare uma interface chamada <mark>IceCream</mark> que inclua duas propriedades: <mark>flavor</mark> como um <mark>string</mark> e <mark>scoops</mark> como um <mark>number</mark>.</li>
+
+    <code>
+      TypeScript
+
+      interface IceCream {
+        flavor: string;
+        scoops: number;
+      }
+    </code>
+
+    <li>Agora, você pode implementar a nova interface. Vamos começar usando a interface <mark>IceCream</mark> como um tipo em uma declaração de variável. Declare uma nova variável chamada <mark>myIceCream</mark> como o tipo <mark>IceCream</mark> e atribua valores às propriedades necessárias. Observe que, à medida que você começa a digitar os nomes de propriedade, o IntelliSense sugere os nomes e tipos corretos. Verifique seu trabalho exibindo o valor no console.</li>
+
+    <code>
+      TypeScript
+
+      let myIceCream: IceCream = {
+        flavor: 'vanilla',
+        scoops: 2
+      }
+
+      console.log(myIceCream.flavor);
+    </code>
+
+    <li>Selecione <strong>Executar</strong>. Observe que a variante é exibida na janela de Log.</li>
+    <li>Em seguida, criaremos uma função na parte inferior chamada <mark>tooManyScoops</mark> que usa a interface <mark>IceCream</mark> como tipo de parâmetro. Essa função verifica o número de scoops no objeto IceCream e retorna uma mensagem com base no resultado. Para testar o seu trabalho, passe o objeto <mark>{flavor: 'vanilla', scoops: 5}</mark> como um parâmetro e verifique o resultado retornando-o para o console.</li>
+
+    <code>
+      TypeScript
+
+      function tooManyScoops(dessert: IceCream) {
+        if (dessert.scoops >= 4) {
+          return dessert.scoops + ' is too many scoops!';
+        } else {
+          return 'Your order will be ready soon!';
+        }
+      }
+
+      console.log(tooManyScoops({flavor: 'vanilla', scoops: 5}));
+    </code>
+
+    <li>Execute o código clicando em <strong>Executar</strong>. A saída será parecida com a exibida abaixo.</li>
+
+    <code>
+      Console
+      "vanilla"
+      "5 is too many scoops!"
+    </code>
+
+    <li>Abra o painel JavaScript e observe as diferenças entre o código JavaScript e o código TypeScript. A interface não tem nenhuma representação no código JavaScript.</li>
+    <li>O que acontecerá se você adicionar outra propriedade à interface <mark>IceCream</mark>? Vamos adicionar uma nova propriedade chamada <mark>instructions</mark> e atribuí-la ao tipo <mark>string</mark>.</li>
+    <li>Examine os erros que aparecem no seu código. Para resolvê-los, você deve adicionar a propriedade <mark>instructions</mark> aos detalhes de implementação da declaração de variável e adicioná-la como um parâmetro passado para a função. Por enquanto, torne a propriedade <mark>instructions</mark> opcional adicionando um ponto de interrogação ao nome da propriedade. Todos os erros devem ser resolvidos, porque a propriedade <mark>instructions</mark> não é mais exigida pela interface.</li>
+  </ol>
+
+  <p>Até agora, tudo bem. Mas um sundae sem cobertura é apenas um sorvete comum. Em seguida, veremos como estender uma interface.</p>
+</body>
+
+</html>
