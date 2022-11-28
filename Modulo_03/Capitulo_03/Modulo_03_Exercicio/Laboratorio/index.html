@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Laboratório – Usar interfaces no TypeScript</title>
+</head>
+
+<body>
+  <h1>Laboratório – Usar interfaces no TypeScript</h1>
+
+  <p>Neste laboratório, você converterá um código JavaScript em código fortemente tipado usando interfaces.</p>
+
+  <p>O código JavaScript contém duas funções: <mark>calculateInterestOnlyLoanPayment</mark>, que calcula o pagamento de um empréstimo com pagamento apenas de juros e <mark>calculateConventionalLoanPayment</mark>, que calcula o pagamento de um empréstimo convencional. Assim como ocorre com a maioria dos cálculos de empréstimo, ambas as funções aceitam os parâmetros <mark>principal</mark> e <mark>interestRate</mark>. A diferença entre eles é que a função <mark>calculateConventionalLoanPayment</mark> aceita uma terceira propriedade, <mark>months</mark>, que a função <mark>calculateInterestOnlyLoanPayment</mark> não aceita.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Propriedade</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><mark>principal</mark></td>
+        <td>O valor da entidade de segurança do empréstimo.</td>
+      </tr>
+
+      <tr>
+        <td><mark>interestRate</mark></td>
+        <td>A taxa de juros anual do empréstimo. Por exemplo, 5% é especificado como 5.</td>
+      </tr>
+
+      <tr>
+        <td><mark>months</mark></td>
+        <td>O prazo do empréstimo, especificado em meses. Um empréstimo com pagamento apenas de juros não exige essa propriedade porque o número de meses é irrelevante (o empréstimo nunca será pago quando somente o pagamento dos juros for realizado a cada mês).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Neste exercício, você vai:</p>
+
+  <ol>
+    <li>Declarar uma interface chamada <mark>Loan</mark> que defina duas propriedades, <mark>principal</mark> e <mark>interestRate</mark>.</li>
+    <li>Declarar uma interface chamada <mark>ConventionalLoan</mark> que estenda <mark>Loan</mark> e defina a propriedade adicional necessária para um empréstimo convencional, <mark>months</mark>.</li>
+    <li>Atualizar as duas funções para implementar as novas interfaces e tornar os parâmetros fortemente tipados.</li>
+  </ol>
+
+  <h2>Exercício 1 – declarar as interfaces</h2>
+
+  <ol>
+    <li>Clone o repositório inicial inserindo o conteúdo a seguir no prompt de comando.</li>
+
+    <code>
+      Bash
+      
+      git clone https://github.com/MicrosoftDocs/mslearn-typescript
+      cd mslearn-typescript/code/module-03/m03-start
+      code .
+    </code>
+
+    <li>Abra o arquivo <strong>module03.ts</strong>.</li>
+    <li>Localize <mark>TODO: Declare the Loan interface</mark>. Declare uma interface chamada <mark>Loan</mark> que defina duas propriedades, <mark>principal</mark> e <mark>interestRate</mark>, cada uma como um <mark>number</mark>.</li>
+
+    <code>
+      TypeScript
+      
+      interface Loan {
+        principal: number,
+        interestRate: number //* Interest rate percentage (eg. 14 is 14%)
+      }
+    </code>
+
+    <li>Localize <mark>TODO: Declare the ConventionalLoan interface</mark>. Declare uma interface chamada <mark>ConventionalLoan</mark> que estenda <mark>Loan</mark> e defina a propriedade adicional necessária para um empréstimo convencional, <mark>months</mark>, como um <mark>number</mark>.</li>
+
+    <code>
+      TypeScript
+      
+      interface ConventionalLoan extends Loan {
+        months: number //* Total number of months
+      }
+    </code>
+  </ol>
+
+  <h2>Exercício 2 – implementar as interfaces</h2>
+
+  <ol>
+    <li>Localize <mark>TODO: Update the calculateInterestOnlyLoanPayment function</mark>. Substitua os dois parâmetros na função <mark>calculateInterestOnlyLoanPayment</mark> por um objeto do tipo <mark>Loan</mark> (por exemplo, <mark>loanTerms: Loan</mark>) e insira o valor retornado da função como uma <mark>string</mark>.</li>
+
+    <code>
+      TypeScript
+      
+      function calculateInterestOnlyLoanPayment(loanTerms: Loan): string {
+        // ...
+      }
+    </code>
+
+    <li>Você observará alguns erros porque o TypeScript não reconhece os parâmetros <mark>interestRate</mark> e <mark>principal</mark>. Substitua os nomes de parâmetro na função pelas propriedades do objeto <mark>Loan</mark>. (Por exemplo, <mark>loanTerms.interestRate</mark>).</li>
+
+    <code>
+      TypeScript
+      
+      function calculateInterestOnlyLoanPayment(loanTerms: Loan): string {
+        // Calculates the monthly payment of an interest only loan
+        let interest = loanTerms.interestRate / 1200; // Calculates the Monthly Interest Rate of the loan
+        let payment;
+        payment = loanTerms.principal * interest;
+        return 'The interest only loan payment is ' + payment.toFixed(2);
+      }
+    </code>
+
+    <li>Insira as variáveis <mark>interest</mark> e <mark>payment</mark> na função <mark>calculateInterestOnlyLoanPayment</mark> como <mark>numbers</mark>.</li>
+    <li>Teste a função <mark>calculateInterestOnlyLoanPayment</mark> para verificar se ela está funcionando corretamente. Lembre-se de que agora você precisa passar os parâmetros para a função na forma de um objeto <mark>Loan</mark>.</li>
+
+    <code>
+      TypeScript
+      
+      let interestOnlyPayment = calculateInterestOnlyLoanPayment({principal: 30000, interestRate: 5});
+      console.log(interestOnlyPayment); //* Returns "The interest only loan payment is 125.00"
+    </code>
+
+    <li>Localize <mark>TODO: Update the calculateConventionalLoanPayment function</mark>. Atualize a função <mark>calculateConventionalLoanPayment</mark>, desta vez substituindo os três parâmetros por um objeto do tipo <mark>ConventionalLoan</mark>, e insira o valor retornado da função como <mark>string</mark>. Faça as atualizações restantes para a implementação da função <mark>calculateConventionalLoanPayment</mark>.</li>
+
+    <code>
+      TypeScript
+      
+      function calculateConventionalLoanPayment(loanTerms: ConventionalLoan): string {
+        // Calculates the monthly payment of a conventional loan
+        let interest: number = loanTerms.interestRate / 1200; // Calculates the Monthly Interest Rate of the loan
+        let payment: number;
+        payment = loanTerms.principal * interest / (1 - (Math.pow(1/(1 + interest), loanTerms.months)));
+        return 'The conventional loan payment is ' + payment.toFixed(2);
+      }
+    </code>
+
+    <li>Teste a função <mark>calculateConventionalLoanPayment</mark> para verificar se ela está funcionando corretamente. Lembre-se de que agora você precisa passar os parâmetros para a função na forma de um objeto <mark>ConventionalLoan</mark>.</li>
+
+    <code>
+      TypeScript
+
+      let conventionalPayment = calculateConventionalLoanPayment({principal: 30000, interestRate: 5, months: 180});
+      console.log(conventionalPayment); //* Returns "The conventional loan payment is 237.24"
+    </code>
+  </ol>
+
+  <h2>Solução do laboratório</h2>
+
+  <p>Veja a versão final do código digitando o comando a seguir no prompt de comando.</p>
+
+  <code>
+    Bash
+
+    cd ../m03-end
+    code .
+  </code>
+
+  <p>Abra o arquivo <strong>module03.ts</strong> para ver a solução deste laboratório. Confira a seção <strong>Configuração do laboratório</strong> acima para obter mais informações sobre como configurar o ambiente de desenvolvimento para executar a solução.</p>
+</body>
+
+</html>
