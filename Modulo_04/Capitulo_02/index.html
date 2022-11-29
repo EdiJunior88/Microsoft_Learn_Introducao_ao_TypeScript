@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Criar funções no TypeScript</title>
+</head>
+
+<body>
+  <h1>Criar funções no TypeScript</h1>
+
+  <p>No JavaScript, as definições de função não especificam os tipos de dados para parâmetros, não executam a verificação de tipo nos argumentos transmitidos nem verificam a quantidade de argumentos recebidos. Portanto, você precisa adicionar a lógica para verificar esses parâmetros a suas funções.</p>
+
+  <p>O TypeScript simplifica o desenvolvimento de funções e as torna mais fáceis de solucionar, permitindo que você digite parâmetros e retorne valores. O TypeScript também adiciona novas opções para parâmetros. Por exemplo, embora todos os parâmetros sejam opcionais em funções JavaScript, você pode torná-los obrigatórios ou opcionais no TypeScript.</p>
+
+  <p>A adição de tipos a funções ajuda a impedir que você transmita valores que não deveria transmitir a suas funções. Isso é especialmente importante quando você está trabalhando com bases ou funções de código maiores desenvolvidas por outras pessoas. Por mais que a adição de tipos seja uma diferença simples, ela oferece a vantagem de verificar o tipo dos valores transmitidos para a função e o que é retornado. Em vez de ter que ficar adicionando toda a lógica à função para verificar se o tipo de valor correto foi transmitido a ela e se o valor de retorno está correto, o TypeScript ajuda a garantir os tipos de valor corretos conforme você desenvolve seu código. Além disso, ao criar a lógica de função, você terá suporte completo para preenchimento automático, pois o editor conhecerá o tipo de dados dos parâmetros – algo que o JavaScript normalmente não consegue detectar. Isso é especialmente útil quando você está usando funções desenvolvidas por terceiros porque o TypeScript esclarece os tipos de entrada e saída necessários.</p>
+
+  <p>Assim como no JavaScript, você pode definir funções no TypeScript de várias maneiras diferentes. Vejamos como essas funções se diferem com a adição de tipos no TypeScript.</p>
+
+  <h2>Funções nomeadas</h2>
+
+  <p>Uma função nomeada é uma declaração de função escrita com a palavra-chave <mark>function</mark> e com um nome distinto dentro do escopo atual. As declarações de função nomeadas são carregadas no contexto de execução antes da execução de qualquer código. Isso é conhecido como guindaste, ou seja, você pode usar a função antes de declará-la.</p>
+
+  <p>A sintaxe para declarar uma função nomeada no TypeScript é a mesma usada para definir uma no JavaScript. A única diferença para o TypeScript é que você pode fornecer uma anotação de tipo para os parâmetros e o valor retornado da função.</p>
+
+  <p>Essa função aceita dois parâmetros do tipo <mark>number</mark> e retorna um <mark>number</mark>.</p>
+
+  <code>
+    TypeScript
+
+    function addNumbers (x: number, y: number): number {
+      return x + y;
+    }
+
+    addNumbers(1, 2);
+  </code>
+
+  <h2>Funções anônimas</h2>
+
+  <p>Uma <strong>expressão de função</strong> (ou <strong>função anônima</strong>) é uma função que não é pré-carregada no contexto de execução e só é executada quando o código a encontra. As expressões de função são criadas em runtime e devem ser declaradas antes que possam ser chamadas. (Isso significa que elas não são elevadas, ao contrário de declarações de função nomeadas que são elevadas assim que a execução do programa é iniciada e podem ser chamadas antes da declaração.)</p>
+
+  <p>As expressões de função representam valores; portanto, são geralmente atribuídas a uma variável ou transmitidas para outras funções e podem ser anônimas, o que significa que a função não tem nome.</p>
+
+  <p>Este exemplo atribui uma expressão <mark>function</mark> à variável <mark>addNumbers</mark>. Observe que a função aparece no lugar do nome da função, tornando a função anônima. Você já pode usar essa variável para chamar a função.</p>
+
+  <code>
+    TypeScript
+
+    let addNumbers = function (x: number, y: number): number {
+      return x + y;
+    }
+    
+    addNumbers(1, 2);
+  </code>
+
+  <p>Isso mostra a aparência da função nomeada sum quando escrita como uma função anônima. Observe que o nome add foi substituído pela função e que a função foi implementada como uma expressão em uma declaração de variável.</p>
+
+  <code>
+    TypeScript
+
+    let total = function (input: number[]): number {
+    let total: number = 0;
+
+    for(let i = 0; i &lt input.length; i++) {
+      if(isNaN(input[i])) {
+        continue;
+        }
+        total += Number(input[i]);
+      }
+      return total;
+    }
+    
+    console.log(total([1, 2, 3]));
+  </code>
+
+  <p>Assim como antes, você obterá a verificação de tipo e o IntelliSense ao usar funções anônimas. Você também observará, nesse exemplo, que a variável <mark>total</mark> não é tipada, mas o TypeScript é capaz de determinar seu tipo através de algo chamado "tipificação contextual", uma forma de inferência de tipos. Isso pode reduzir a quantidade de esforço necessário para manter seu programa tipado.</p>
+
+  <h2>Funções de seta</h2>
+
+  <p>As funções de seta (também chamadas de funções Lambda ou de seta grossa, devido ao operador => usado para defini-las) fornecem uma sintaxe abreviada para definir uma função anônima. Devido à sua natureza concisa, as funções de seta geralmente são usadas com funções simples e em alguns cenários de manipulação de eventos.</p>
+
+  <p>Este exemplo compara a sintaxe de uma function anônima com uma função de seta de linha única. A função de seta abrevia a sintaxe omitindo a palavra-chave da função e adicionando o operador => entre os parâmetros e o corpo da função.</p>
+
+  <code>
+    TypeScript
+
+    // Anonymous function
+    let addNumbers1 = function (x: number, y: number): number {
+      return x + y;
+    }
+
+    // Arrow function
+    let addNumbers2 = (x: number, y: number): number => x + y;
+  </code>
+
+  <p>Nesse exemplo, observe ainda que as chaves foram removidas e que não há uma instrução <mark>return</mark>. As funções de seta de linha única podem usar uma <strong>sintaxe de corpo concisa</strong> ou um <strong>retorno implícito</strong>, que permite a omissão das chaves e da palavra-chave <mark>return</mark>.</p>
+
+  <p>Se o corpo da função tiver mais do que uma linha única, use chaves em torno dela e inclua a instrução <mark>return</mark> (se for o caso). Este exemplo mostra a aparência da função anônima do exemplo anterior quando gravada como função de seta.</p>
+
+  <code>
+    TypeScript
+
+    let total2 = (input: number[]): number =&gt {
+    let total: number = 0;
+
+    for(let i = 0; i &lt input.length; i++) {
+      if(isNaN(input[i])) {
+          continue;
+        }
+          total += Number(input[i]);
+        }
+      return total;
+    }
+  </code>
+
+  <div>
+    <p>Dica</p>
+
+    <p>As funções de seta foram introduzidas no ES2015, portanto, nem todos os navegadores dão suporte a elas. Com o uso do TypeScript, você pode aproveitar esses tipos de função e descompilar para versões anteriores do JavaScript, se necessário, para que seu código funcione com navegadores mais antigos.</p>
+  </div>
+</body>
+
+</html>
