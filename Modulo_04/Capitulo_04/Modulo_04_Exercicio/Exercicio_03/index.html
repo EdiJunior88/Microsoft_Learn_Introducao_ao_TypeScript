@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Exercício – Definir tipos de função</title>
+</head>
+
+<body>
+  <h1>Exercício – Definir tipos de função</h1>
+
+  <p>Você pode definir os tipos de função e usá-los em suas funções. Isso será útil se você quiser aplicar a mesma assinatura de tipo de função a mais de uma função.</p>
+
+  <p>Você pode definir um tipo de função usando um alias de tipo ou uma interface. As duas estratégias funcionam basicamente da mesma forma, portanto, cabe a você decidir qual é a melhor. Uma interface será melhor se você quiser ter a opção de estender o tipo de função. Um alias de tipo será melhor se você quiser usar uniões ou tuplas.</p>
+
+  <p>Suponhamos que você esteja criando uma função que executa uma operação Adicionar ou uma operação Subtrair, dependendo do valor de um parâmetro transmitido a ela. Ambas as operações aceitam dois números, x e y, e retornam o resultado como um número.</p>
+
+  <ol>
+    <li>Abra o <a href="https://www.typescriptlang.org/play">Playground</a> e remova qualquer código existente.</li>
+    <li>Defina um tipo de função chamado <mark>calculator</mark> usando um alias de tipo. A assinatura de tipo tem uma lista de parâmetros <mark>(x: number, y: number)</mark> e retorna um number, separado por um operador de seta <mark>(=&gt)</mark>. (Observe que a sintaxe da assinatura de tipo é a mesma que a da função de seta.)</li>
+
+    <code>
+      TypeScript
+    
+      type calculator = (x: number, y: number) =&gt number;
+    </code>
+
+    <li>Agora você pode usar o tipo de função como assinatura de tipo ao declarar funções. Declare duas variáveis do tipo de função <mark>calculator</mark>, uma para a operação Adicionar e outra para a operação Subtrair. Teste as novas funções retornando o resultado de cada uma para o console.</li>
+
+    <code>
+      TypeScript
+      let addNumbers: calculator = (x: number, y: number): number =&gt x + y;
+      let subtractNumbers: calculator = (x: number, y: number): number =&gt x - y;
+    
+      console.log(addNumbers(1, 2));
+      console.log(subtractNumbers(1, 2));
+    </code>
+
+    <li>O tipo de função <mark>calculator</mark> também pode ser usado para transmitir valores oriundos de outra função. Insira a função <mark>doCalculation</mark>, que retorna o resultado da função <mark>addNumbers</mark> ou <mark>subtractNumbers</mark> com base no valor transmitido ao parâmetro <mark>operation</mark>.</li>
+
+    <code>
+      TypeScript
+      let doCalculation = (operation: 'add' | 'subtract'):
+    
+      calculator =&gt {
+        if (operation === 'add') {
+          return addNumbers;
+        } else {
+          return subtractNumbers;
+        }
+      }
+    </code>
+
+    <li>Tente executar a função inserindo <mark>console.log(doCalculation('add')(1, 2))</mark> e você observará que o TypeScript é capaz de fornecer ajuda do IntelliSense com base nos tipos definidos em <mark>doCalculation</mark> e <mark>calculator</mark>.</li>
+    <li>Agora, comente o tipo de função <mark>calculator</mark> e declare um novo usando uma interface. Observe que a assinatura de tipo é ligeiramente diferente, com dois-pontos <mark>(:)</mark> separando a lista de parâmetros e o tipo de retorno em vez do operador de seta. Substitua a função <mark>calculator</mark> pela interface <mark>Calculator</mark> nas declarações de variável. Quando você terminar, o código deverá funcionar da mesma forma.</li>
+
+    <code>
+      TypeScript
+      // type calculator = (x: number, y: number) =&gt number;
+    
+      interface Calculator {
+       (x: number, y: number): number;
+      }
+    </code>
+  </ol>
+
+  <h2>Inferência de tipos de função</h2>
+
+  <p>Ao definir uma função, os nomes dos parâmetros de função não precisam corresponder àqueles no tipo de função. Embora que você precise nomear os parâmetros na assinatura de tipo em ambos os locais, os nomes são ignorados durante a verificação de compatibilidade de dois tipos de função.</p>
+  <p>Você também pode deixar de fora os tipos de parâmetro e tipos de retorno porque o TypeScript inferirá isso pelo tipo de função.</p>
+  <p>No que diz respeito ao TypeScript, essas três instruções são idênticas.</p>
+
+  <code>
+    TypeScript
+  
+    let addNumbers: Calculator = (x: number, y: number): number =&gt x + y;
+    let addNumbers: Calculator = (number1: number, number2: number): number =&gt number1 + number2;
+    let addNumbers: Calculator = (num1, num2) =&gt num1 + num2;
+  </code>
+</body>
+
+</html>
