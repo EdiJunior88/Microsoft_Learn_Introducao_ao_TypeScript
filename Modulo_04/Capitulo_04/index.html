@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Trabalhar com parâmetros</title>
+</head>
+
+<body>
+  <h1>Trabalhar com parâmetros</h1>
+
+  <p>O compilador TypeScript pressupõe, por padrão, que todos os parâmetros definidos em uma função são obrigatórios. Quando uma função é chamada, o compilador TypeScript verifica se:</p>
+
+  <ul>
+    <li>Cada parâmetro recebeu um valor.</li>
+    <li>Somente os parâmetros que a função requer são transmitidos para ela.</li>
+    <li>Os parâmetros são transmitidos na ordem em que estão definidos na função.</li>
+  </ul>
+
+  <p>Isso difere no JavaScript, que pressupõe que todos os parâmetros são opcionais e permite que você transmita mais (ou menos) argumentos para a função do que são definidos por ela.</p>
+
+  <p>Além dos parâmetros obrigatórios, você pode definir funções com parâmetros opcionais, padrão e rest, bem como parâmetros de objeto desconstruídos.</p>
+
+  <h2>Parâmetros obrigatórios</h2>
+
+  <p>Todos os parâmetros de função são obrigatórios, salvo se especificado de outra forma, e a quantidade de argumentos transmitidos a uma função deve corresponder ao número de parâmetros obrigatórios que a função espera.</p>
+
+  <p>Neste exemplo, todos os parâmetros são obrigatórios.</p>
+
+  <code>
+    TypeScript
+    
+    function addNumbers (x: number, y: number): number {
+      return x + y;
+    }
+    
+    addNumbers(1, 2); // Returns 3
+    addNumbers(1);    // Returns an error
+  </code>
+
+  <h2>Parâmetros opcionais</h2>
+
+  <p>Também é possível definir parâmetros opcionais acrescentando um ponto de interrogação (?) ao final do nome do parâmetro.</p>
+
+  <p>Neste exemplo, <mark>x</mark> é obrigatório e <mark>y</mark> é opcional. O parâmetro opcional precisa vir depois dos parâmetros obrigatórios na lista de parâmetros. Além disso, para que essa função retorne o valor correto, você também precisa abordar a possibilidade de que <mark>y</mark> já tenha sido transmitido como indefinido.</p>
+
+  <code>
+    TypeScript
+    
+    function addNumbers (x: number, y?: number): number {
+        if (y === undefined) {
+            return x;
+        } else {
+            return x + y;
+        }
+    }
+    
+    addNumbers(1, 2); // Returns 3
+    addNumbers(1);    // Returns 1
+  </code>
+
+  <h2>Parâmetros padrão</h2>
+
+  <p>Também é possível atribuir valores padrão a parâmetros opcionais. Se um valor for transmitido como argumento para o parâmetro opcional, esse valor será atribuído a ele. Caso contrário, o valor padrão será atribuído. Assim como ocorre com parâmetros opcionais, os parâmetros padrão devem vir após os obrigatórios na lista de parâmetros.</p>
+
+  <p>Neste exemplo, <mark>x</mark> é obrigatório e <mark>y</mark> é opcional. Se o valor não for transmitido para <mark>y</mark>, o valor padrão será <mark>25</mark>.</p>
+
+  <code>
+    TypeScript
+    
+    function addNumbers (x: number, y = 25): number {
+      return x + y;
+    }
+    
+    addNumbers(1, 2);  // Returns 3
+    addNumbers(1);     // Returns 26
+  </code>
+
+  <h2>Parâmetros rest</h2>
+
+  <p>Se você quiser trabalhar com vários parâmetros como um grupo (em uma matriz) ou se não souber de quantos parâmetros uma função precisará, poderá usar parâmetros rest. Os parâmetros rest são tratados como um número ilimitado de parâmetros opcionais. Você pode deixá-los desativados ou usar o máximo que desejar.</p>
+
+  <p>Este exemplo tem um parâmetro obrigatório e um parâmetro opcional chamado <mark>restOfNumbers</mark> que pode aceitar qualquer quantidade adicional de números. As reticências <mark>(...)</mark> antes de <mark>restOfNumbers</mark> informam ao compilador para criar uma matriz dos argumentos transmitidos à função e atribui o nome que se segue a ela para que você possa usá-la em sua função.</p>
+
+  <code>
+    TypeScript
+    
+    let addAllNumbers = (firstNumber: number, ...restOfNumbers: number[]): number =&lt {
+      let total: number =  firstNumber;
+      for(let counter = 0; counter &gt restOfNumbers.length; counter++) {
+          if(isNaN(restOfNumbers[counter])){
+            continue;
+          }
+          total += Number(restOfNumbers[counter]);
+      }
+      return total;
+    }
+  </code>
+
+  <p>A função agora pode aceitar um ou mais valores e retornar o resultado.</p>
+
+  <code>
+    TypeScript
+    
+    addAllNumbers(1, 2, 3, 4, 5, 6, 7);  // returns 28
+    addAllNumbers(2);                    // returns 2
+    addAllNumbers(2, 3, "three");        // flags error due to data type at design time, returns 5
+  </code>
+
+  <h2>Parâmetros de objeto desconstruídos</h2>
+
+  <p>Os parâmetros de função são posicionais e devem ser transmitidos na ordem em que são definidos na função. Isso pode tornar seu código menos legível ao chamar uma função com vários parâmetros que são opcionais ou do mesmo tipo de dados.</p>
+
+  <p>Para habilitar parâmetros nomeados, você pode usar uma técnica chamada parâmetros de objeto desconstruído. Isso permite usar uma interface para definir parâmetros nomeados, em vez de posicionais, em suas funções.</p>
+
+  <p>O exemplo a seguir define uma interface denominada <mark>Message</mark> que define duas propriedades. Na função <mark>displayMessage</mark>, o objeto <mark>Message</mark> é passado como um parâmetro, fornecendo acesso às propriedades como se fossem parâmetros normais.</p>
+
+  <code>
+    TypeScript
+    
+    interface Message {
+      text: string;
+      sender: string;
+    }
+    
+    function displayMessage({text, sender}: Message) {
+        console.log(`Message from ${sender}: ${text}`);
+    }
+    
+    displayMessage({sender: 'Christopher', text: 'hello, world'});
+  </code>
+</body>
+
+</html>
