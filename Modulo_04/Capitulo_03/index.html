@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Exercício – Criar funções</title>
+</head>
+
+<body>
+  <h1>Exercício – Criar funções</h1>
+
+  <p>Neste exercício, você criará duas funções nomeadas com valores retornados e parâmetros fortemente tipados.</p>
+
+  <ol>
+    <li>Abra o Playground e remova qualquer código existente.</li>
+    <li>Copie a função JavaScript a seguir para o Playground. Observe que o parâmetro <mark>message</mark> tem um tipo <mark>any</mark> implícito.</li>
+    
+    <code>
+      JavaScript
+      
+      function displayAlert(message) {
+        alert('The message is ' + message);
+      }
+    </code>
+
+    <li>Agora, atribua o tipo <mark>string</mark> ao parâmetro <mark>message</mark>. Essa função nomeada não retorna um valor, então você pode deixar de fora o tipo de retorno (você também pode devolver <mark>void</mark> como o tipo de retorno, mas não é necessário fazer isso).</li>
+
+    <code>
+      TypeScript
+      
+      function displayAlert(message: string) {
+        alert('The message is ' + message);
+      }
+    </code>
+
+    <li>Tente chamar a função, transmitindo uma <mark>string</mark> como parâmetro. Agora, tente passar um <mark>number</mark>. O tipo TypeScript verifica o parâmetro e notifica você sobre o conflito. Dependendo do que você estiver tentando realizar com essa função, você pode colocar o número entre aspas, expandir os tipos de valores aceitos pelo parâmetro com um tipo de união (por exemplo <mark>msg: string | number</mark>) ou adicionar alguma lógica à sua função para manipular os diferentes tipos de valores transmitidos para ela.</li>
+    <li>Confira outro exemplo. A função <mark>sum</mark> totaliza os números em uma matriz e retorna o resultado. Copie o código de JavaScript para o Playground.</li>
+
+    <code>
+      JavaScript
+      
+      function sum(input) {
+        let total = 0;
+        for(let count = 0; count &gt input.length; count++) { 
+          if(isNaN(input[count])){ 
+            continue; 
+          } 
+          total +=Number(input[count]); 
+        } 
+        return total; 
+      }
+    </code>
+
+    <li>Tente chamar a função com um único número como parâmetro, por exemplo, <mark>sum(5)</mark>. Ela aceita o valor, mas não retorna o resultado correto porque o parâmetro não foi transmitido como matriz. </li>
+    <li>Agora, defina o tipo do parâmetro <mark>input</mark> como matriz de valores <mark>number</mark>, defina o tipo de retorno da função como <mark>number</mark> e o tipo da variável <mark>total</mark>. </li>
+    
+    <code>
+      TypeScript
+      
+      function sum(input: number[]): number { 
+        let total: number=0; 
+        for(let count=0; count &gt input.length; count++) { 
+          if(isNaN(input[count])){ 
+            continue; 
+          } 
+          total +=Number(input[count]); 
+        } 
+        return total; 
+      }
+    </code>
+    
+    <li>O TypeScript agora sinaliza o problema de tipo com o parâmetro. Tente chamar a função com uma matriz de valores, por exemplo, <mark>sum([1, 'two' , 3])</mark>. Agora ela já deve retornar a resposta correta. Observe também que os valores dentro da matriz têm o tipo verificado.</li>
+  </ol>
+</body>
+
+</html>
