@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Exercício – Trabalhar com parâmetros</title>
+</head>
+
+<body>
+  <h1>Exercício – Trabalhar com parâmetros</h1>
+
+  <p>Neste exercício, você criará funções que têm parâmetros obrigatórios, opcionais e padrão.</p>
+
+  <h2>Parâmetros obrigatórios</h2>
+
+  <ol>
+    <li>Abra o <a href="https://www.typescriptlang.org/play">Playground</a> e remova qualquer código existente.</li>
+    <li>Insira a função de seta a seguir, que aceita três parâmetros obrigatórios.</li>
+
+    <code>
+      TypeScript
+    
+      let addThreeNumbers = (x: number, y: number, z: number): number =&gt x + y + z;
+    </code>
+
+    <li>Tente chamar a função digitando <mark>addThreeNumbers(10, 20)</mark>. O TypeScript gera o erro <strong>Eram esperados três argumentos, mas foram obtidos dois. Um argumento para 'z' não foi fornecido</strong>. Quando executada, a função retorna NaN porque o terceiro argumento foi passado como <mark>undefined</mark>, invalidando o cálculo.</li>
+    <li>O que acontece ao digitar <mark>addThreeNumbers(10, 20, 30, 40)</mark>? O TypeScript gera o erro <strong>Eram esperados três argumentos, mas foram obtidos quatro</strong>. Quando é executada, a função remove o quarto e retorna <mark>60</mark>.</li>
+  </ol>
+
+  <h2>Parâmetros opcionais</h2>
+
+  <ol>
+    <li>Na função, tente tornar o parâmetro <mark>y</mark> opcional. O que acontece?</li>
+
+    <code>
+        TypeScript
+
+        let addThreeNumbers = (x: number, y?: number, z: number): number =&gt x + y + z;
+      </code>
+
+    <li>O TypeScript <strong>gera um erro</strong> porque a posição dos parâmetros opcionais é importante. Na lista de parâmetros, os parâmetros opcionais devem seguir todos os parâmetros obrigatórios. Em vez do parâmetro <mark>y</mark>, tente tornar o parâmetro <mark>z</mark> opcional. Além disso, para que essa função retorne o valor correto, você também deve atualizá-la para lidar com a possibilidade de que z já tenha sido transmitido como <mark>undefined</mark>. Agora você deve conseguir chamar a função usando <mark>addThreeNumbers(10, 20)</mark> ou <mark>addThreeNumbers(10, 20, 30)</mark>.</li>
+
+    <code>
+        TypeScript
+
+        let addThreeNumbers = (x: number, y: number, z?: number): number =&gt {
+          if((z === undefined)) {
+            return x + y;
+          } else {
+            return x + y + z;
+          }
+        };
+      </code>
+  </ol>
+</body>
+
+</html>

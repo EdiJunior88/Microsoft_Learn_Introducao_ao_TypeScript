@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Exercício – Trabalhar com parâmetros</title>
+</head>
+
+<body>
+  <h1>Exercício – Trabalhar com parâmetros</h1>
+
+  <h2>Parâmetros padrão</h2>
+
+  <ol>
+    <li>Insira a função de seta a seguir, que aceita três parâmetros obrigatórios.</li>
+
+    <code>
+      TypeScript
+    
+      let subtractThreeNumbers = (x: number, y: number, z: number): number =&gt x - y - z;
+    </code>
+
+    <li>Atribua um valor padrão de <mark>100</mark> ao parâmetro <mark>z</mark> substituindo <mark>z: number</mark> por <mark>z = 100</mark>.</li>
+
+    <code>
+      TypeScript
+    
+      let subtractThreeNumbers = (x: number, y: number, z = 100): number =&gt x - y - z;
+    </code>
+
+    <li>Tente chamar a função com dois e três argumentos para testar o resultado.</li>
+
+    <code>
+      TypeScript
+    
+      subtractThreeNumbers(10, 20); // returns -110 because 'z' has been assigned the value 100
+      subtractThreeNumbers(10, 20, 15); // returns -25
+    </code>
+  </ol>
+</body>
+
+</html>
