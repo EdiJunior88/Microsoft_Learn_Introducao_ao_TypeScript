@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Laboratório – Usar funções no TypeScript</title>
+</head>
+
+<body>
+  <h1>Laboratório – Usar funções no TypeScript</h1>
+
+  <p>Neste laboratório, você converterá algumas funções JavaScript em TypeScript.</p>
+
+  <h2>Exercício 1: converter uma função JavaScript em uma TypeScript com tipos de retorno e parâmetros fortemente tipados</h2>
+
+  <p>O seguinte código JavaScript contém três funções:</p>
+
+  <ul>
+    <li><mark>BuildArray</mark> cria uma matriz de números aleatórios exclusivos. Ela aceita um parâmetro <mark>items</mark> que determina a quantidade de itens na matriz e um parâmetro <mark>sortOrder</mark> que determina se a matriz é classificada em ordem crescente ou decrescente.</li>
+    <li><mark>sortDescending</mark> e <mark>sortAscending</mark> são funções de comparação que informam ao método <mark>sort()</mark> como classificar números em ordem crescente ou decrescente.</li>
+  </ul>
+
+  <p>Converta as funções em TypeScript com tipos de retorno e parâmetros fortemente tipados.</p>
+
+  <ol>
+    <li>Clone o repositório inicial inserindo o que vem a seguir no prompt de comando.</li>
+
+    <code>
+      Bash
+
+      git clone https://github.com/MicrosoftDocs/mslearn-typescript
+      cd mslearn-typescript/code/module-04/m04-start
+      code .
+    </code>
+
+    <li>Abra o arquivo <strong>module04.ts</strong>.</li>
+    <li>Localize <mark>TODO: Update the BuildArray function</mark>.</li>
+    <li>Na função <mark>BuildArray</mark>, adicione tipos à lista de parâmetros, ao valor retornado e às variáveis.</li>
+
+    <code>
+      TypeScript
+      
+      function buildArray(items: number, sortOrder: 'ascending' | 'descending'): number[] {
+        let randomNumbers: number[] = [];
+        let nextNumber: number;
+        
+        for (let counter = 0; counter &lt items; counter++) {
+          nextNumber = Math.ceil(Math.random() * (100 - 1));
+          
+          if (randomNumbers.indexOf(nextNumber) === -1) {
+              randomNumbers.push(nextNumber);
+            } else {
+              counter--;
+              }
+            }
+            
+            if (sortOrder === 'ascending') {
+              return randomNumbers.sort(sortAscending);
+            } else {
+              return randomNumbers.sort(sortDescending);
+            }
+      }
+    </code>
+
+    <li>Localize <mark>TODO: Convert the sortDescending and sortAscending functions to arrow functions</mark>.</li>
+    <li>Converta as funções <mark>sortDescending</mark> e <mark>sortAscending</mark> em funções anônimas e atribua-as a variáveis de mesmo nome.</li>
+
+    <code>
+      TypeScript
+
+      let sortDescending = (a, b) =&gt {
+        if (a &gt b) {
+        return -1;
+        } else if (b &gt a) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+        
+      let sortAscending = (a, b) =&gt {
+        if (a &gt b) {
+          return 1;
+        } else if (b &gt a) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    </code>
+
+    <li>Localize <mark>TODO: Declare a new function type for the sortDescending and sortAscending functions</mark>.</li>
+    <li>Declare um novo tipo de função para as funções <mark>sortDescending</mark> e <mark>sortAscending</mark> usando um alias de tipo ou uma interface.</li>
+
+    <code>
+      TypeScript
+      
+      type compareFunctionType = (a: number, b:number) =&gt number;
+    </code>
+
+    <li>Nas declarações de variável para <mark>sortDescending</mark> e <mark>sortAscending</mark>, aplique o novo tipo de função como o tipo de variável.</li>
+
+    <code>
+      TypeScript
+
+      let sortDescending: compareFunctionType = (a, b) =&gt {
+        if (a &gt b) {
+          return -1;
+        } else if (b &gt a) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+
+      let sortAscending: compareFunctionType = (a, b) =&gt {
+        if (a &gt b) {
+          return 1;
+        } else if (b &gt a) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    </code>
+
+    <li>Teste seu trabalho chamando a função <mark>buildArray</mark>.</li>
+
+    <code>
+      TypeScript
+
+      let myArray1 = buildArray(12, 'ascending');
+      let myArray2 = buildArray(8, 'descending');
+
+      console.log(myArray1);
+      console.log(myArray2);
+    </code>
+  </ol>
+
+  <h2>Exercício 2: converter uma função JavaScript em uma TypeScript usando parâmetros opcionais</h2>
+
+  <p>Esta função JavaScript retorna o valor de pagamento de um empréstimo.</p>
+
+  <ol>
+    <li>Localize <mark>TODO: Update the LoanCalculator function</mark>.</li>
+    <li>Converta a função <mark>loanCalculator</mark> em TypeScript com parâmetros fortemente tipados, variáveis e tipos de retorno.</li>
+    <li>Torne o parâmetro <mark>months</mark> opcional, mas atribua a ele um valor padrão de 12 meses, se omitido.</li>
+
+    <code>
+      TypeScript
+
+      function loanCalculator (principle: number, interestRate: number, months = 12): string {
+        let interest: number = interestRate / 1200; // Calculates the monthly interest rate
+        let payment: number;
+
+        payment = principle * interest / (1 - (Math.pow(1/(1 + interest), months)));
+
+        return payment.toFixed(2);
+      }
+    </code>
+
+    <li>Teste seu trabalho chamando a função <mark>loanCalculator</mark> com apenas os parâmetros necessários.</li>
+
+    <code>
+      TypeScript
+
+      let myLoan = loanCalculator(1000, 5);
+      console.log(myLoan);
+    </code>
+  </ol>
+
+  <h2>Desafie-se!</h2>
+
+  <p>Para um desafio adicional, pegue um JavaScript existente que você tenha escrito ou que encontrou na Web e reescreva-o em TypeScript usando o que aprendeu sobre funções. Você pode e colar o JavaScript no Playground e editá-lo ou usar outro editor como o Visual Studio Code.</p>
+
+  <h2>Solução do laboratório</h2>
+
+  <p>Exiba a versão final do código digitando o que vem a seguir no prompt de comando.</p>
+
+  <code>
+    Bash
+
+    cd ../m04-end
+    code .
+  </code>
+
+  <p>Abra o arquivo <strong>module04.ts</strong> para ver a solução deste laboratório. Confira a seção <strong>Configuração do laboratório</strong> acima para obter mais informações sobre como configurar o ambiente de desenvolvimento para executar a solução.</p>
+</body>
+
+</html>
