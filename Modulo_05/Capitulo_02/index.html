@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Introdução às classes no TypeScript</title>
+</head>
+
+<body>
+  <h1>Introdução às classes no TypeScript</h1>
+
+  As classes permitem que você expresse padrões comuns orientados por objeto de forma padrão, tornando recursos como herança mais legíveis e interoperáveis. No TypeScript, as classes ainda são outra maneira de definir a forma de um objeto, além de descrever os tipos de objeto com interfaces e funções.
+  
+  Se você não trabalhou com classes, pode ser útil examinar alguns conceitos básicos.
+  
+  Você pode considerar uma classe como blueprint para a criação de objetos, como um carro. Uma classe Car descreve os atributos de um carro, por exemplo, marca, cor ou número de portas. Ela também descreve os comportamentos que o carro pode executar, como acelerar, frear ou virar.
+  
+  Mas a classe Car é apenas um plano para a criação do carro. Você deve criar uma instância de Car da classe Car antes que ela se torne um objeto ao qual você possa atribuir valores de propriedade (como definir a cor como azul) ou chamar seus comportamentos (como aplicar os freios).
+  
+  A classe Car pode ser reutilizada para criar qualquer quantidade de novos objetos Car, cada um com suas próprias características. Você também pode estender a classe Car. Por exemplo, uma classe ElectricCar pode estender Car. Ela terá todos os mesmos atributos e comportamentos de Car, mas também poderá ter atributos e comportamentos exclusivos, como a autonomia e a operação de carregamento.
+  
+  Diagrama mostrando a classe Car com propriedades e métodos.
+  
+  A classe Carro inclui as propriedades marca, cor e portas, bem como os métodos acelerar, frear e convergir. Quando a classe CarroEletrico estende Carro, ela inclui todas as propriedades e métodos de Carro, além de uma nova propriedade chamada variedade e um novo método chamado recarregar.
+  
+  Uma classe encapsula dados para o objeto. Os dados e o comportamento são incluídos na classe, mas os detalhes de ambos podem ser ocultados da pessoa que está trabalhando com o objeto no código. Por exemplo, se você chamar o método turn de um objeto Car, não precisará saber exatamente como o volante funciona, só precisará saber que o carro virará à esquerda quando você o instruir. A classe serve como uma caixa preta em que todos os atributos e comportamentos são expostos apenas por meio de propriedades e métodos, limitando o que um codificador pode fazer com ela.
+  
+   Dica
+  
+  Se você deseja aprofundar-se em conceitos de programação orientada a objetos, confira o vídeo Conceitos básicos sobre classes.
+  
+  Componentes de classe
+  As propriedades, também conhecidas como campos, são os dados (ou atributos) do objeto. Elas são as características determinantes do objeto que você pode definir ou retornar do seu código.
+  O constructor é uma função especial usada para criar e inicializar objetos com base na classe. Quando você cria uma instância da classe, o construtor cria um objeto com a forma da classe e o inicializa com os valores passados a ele.
+  Os acessadores são um tipo de função que você usa para obter (get) ou definir (set) o valor das propriedades. Para que as propriedades sejam somente leitura, basta omitir o acessador set na classe e, para torná-las inacessíveis, omitir o acessador get (a propriedade retornará undefined se você tentar acessá-la, mesmo que tenha recebido um valor durante a inicialização).
+  Os métodos são funções que definem os comportamentos ou as ações que o objeto pode realizar. Você pode chamar esses métodos para invocar o comportamento do objeto. Também é possível definir métodos que só podem ser acessados de dentro da própria classe e normalmente são chamados por outros métodos na classe para executar uma tarefa.
+  Observações sobre design
+  Você pode criar classes para modelar dados, encapsular a funcionalidade, fornecer modelos e vários outros usos. Assim, os componentes listados acima não são necessários em todas as classes que você cria. É possível que você precise apenas de métodos e de um construtor para um objeto utilitário ou apenas de propriedades para gerenciar dados.
+  
+   Observação
+  
+  Os acessadores normalmente são usados apenas quando você precisa controlar o acesso aos valores, como ao implementar a validação ou calcular valores dinamicamente. Se a sua classe está armazenando estritamente valores e não precisa da funcionalidade adicional fornecida pelos acessadores, você pode usar as propriedades.
+</body>
+
+</html>
